@@ -29,6 +29,7 @@ This document describes how to send and manage orders for Brazil markets, for La
 | [Business Reject](#business-reject) | j | Receive |
 | [Reject](#reject) | 3 | Receive |
 | [Execution Report](#execution-report) | 8 | Receive |
+| [Cancel Reject](#cancel-reject) | 9 | Receive |
 
 ## Message Specification
 
@@ -229,6 +230,27 @@ This document describes how to send and manage orders for Brazil markets, for La
 | 58 | Text | N | String | | |
 | 372 | RefMsgType | Y | String | | MsgType of the message that got the rejection |
 | 380 | BusinessRejectReason | Y | String | | Reason that lead to this rejection |
+
+#### Cancel Reject
+
+| Tag | Tag Name | Req | Type | Max Size | Comment |
+| --- | --- | --- | --- | --- | --- |
+| 35 | MsgType | Y | String | | Expected value: 9 |
+| 150 | [ExecType](#exectype) | Y | Char | | Expected value: 8 (REJECTED) [Fields](#fields) |
+| 39 | [OrdStatus](#ordstatus) | Y | String | | Expected value: 8 (REJECTED) See [Fields](#fields) |
+| 37 | OrderID | Y | String | | Order identifier |
+| 11 | ClOrdID | Y | String | 34 | Active order identifier |
+| 41 | OrigClOrdID | Y | String | 34 | If present on request |
+| 434 | CxlRejResponseTo | N | String | | |
+| 58 | Text | N | String | | |
+| 1 | Account | C | Int | | Customer account at the Exchange (If DMA BR) |
+| 55 | Symbol | Y | String | | |
+| 453 | NoPartyIDs | Y | Int | | Expected value 1, Repeating group |
+| 1>447 | PartyIDSource | Y | Char | | Expected value: D=PROPRIETARY CUSTOM CODE |
+| 1>448 | PartyID | Y | String | | Expected value: ExternalId |
+| 1>452 | PartyRole | Y | Int | | Expected value: 33=StrategyID |
+| 115 | OnBehalfOfCompID | C | String | | if present on request |
+| 116 | OnBehalfOfSubID | C | String | | if present on request |
 
 ### Fields
 
