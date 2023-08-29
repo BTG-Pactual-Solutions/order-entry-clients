@@ -26,6 +26,7 @@ This document describes how to send and manage orders for Brazil markets, for La
 | [New Order](#new-order-single) | D | Send |
 | [Replace](#replace) | G | Send |
 | [Cancel](#cancel) | F | Send |
+| [New Order Cross](#new-order-cross) | s | Send |
 | [Business Reject](#business-reject) | j | Receive |
 | [Reject](#reject) | 3 | Receive |
 | [Execution Report](#execution-report) | 8 | Receive |
@@ -185,6 +186,34 @@ This document describes how to send and manage orders for Brazil markets, for La
 | 54 | [Side](#side) | Y | Char | 1 | See [Fields](#fields) |
 | 60 | TransactTime | Y | UTC | | Expected format YYYYMMDD-HH:mm:ss.fff |
 
+#### New Order Cross
+
+| Tag | Tag Name | Req | Type | Max Size | Comment |
+| --- | --- | --- | --- | --- | --- |
+| 35 | MsgType | Y | String | | Expected value: s |
+| 21 | [HandlInst](#handlinst) | Y | String | | Valid value: 1 = Automated execution |
+| 548 | CrossID | Y | String | 38 | Must be unique during a given trading day |
+| 549 | CrossType | Y | Int | | Expected value: 1 Cross Trade Which Is Executed Completely Or Not |
+| 550 | CrossPrioritization | Y | Int | | Expected value: 0 = None |
+| 552 | NoSides | Y | Int | | Expected value: 2 |
+| >54 | [Side](#side) | Y | Char | 1 | See [Fields](#fields) |
+| >11 | ClOrdID | Y | String | 34 | Unique order identifier set by the client |
+| >453 | NoPartyIDs | Y | Int | | Expected value >= 2, Repeating group |
+| >>447 | PartyIDSource | Y | Char | | Expected value: D=PROPRIETARY CUSTOM CODE |
+| >>448 | PartyID | Y | String | | Respective value from the specified PartyRole |
+| >>452 | [PartyRole](#partyrole) | Y | Int | | See [Fields](#fields) |
+| >1 | Account | Y | Int | | Customer account at the Exchange |
+| >38 | OrderQty | Y | Long | | Number of shares or contracts ordered |
+| 55 | Symbol | Y | String | | Security symbol on the exchange |
+| 22 | SecurityIDSource | Y | String | | Valid values: 8 = Exchange Symbol |
+| 48 | SecurityID | Y | String | | Security ID as defined by exchange (Same as Symbol) |
+| 207 | SecurityExchange | Y | String | | Valid values: BVMF = B3 Exchange |
+| 60 | TransactTime | Y | UTC | | Expected format YYYYMMDD-HH:mm:ss.fff |
+| 40 | [OrderType](#ordertype) | Y | Char | 1 | See [Fields](#fields) |
+| 44 | Price | Y | Float | | Limit Price for the orders |
+| 5149 | Memo | N | String | 50 | Free text to be used by the client |
+| 2523 | [CrossedIndicator](#crossedindicator) | N | Int | | See [Fields](#fields) |
+
 #### Execution Report
 
 | Tag | Tag Name | Req | Type | Max Size | Comment |
@@ -330,3 +359,25 @@ Type: Char
 | 6 | Pending Cancel |
 | 8 | Rejected |
 | C | Expired |
+
+#### PartyRole
+
+Type: Int
+
+| Value | Name |
+| --- | --- |
+| 5 | Investor Id |
+| 7 | Entering Firm |
+| 36 | Entering Trader |
+| 54 | Sender Location |
+| 76 | Desk ID |
+
+#### CrossedIndicator
+
+Type: Int
+
+| Value | Name |
+| --- | --- |
+| 1001 | Structured transaction |
+| 1002 | Operational error |
+| 1003 | TWAP/VWAP |
