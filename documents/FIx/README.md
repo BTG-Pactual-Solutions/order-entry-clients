@@ -303,7 +303,6 @@ Obs: Market (Brazil and Chile only), Stop Limit (Brazil only), Market on Close (
 | 1 | Market |
 | 2 | Limit |
 | 4 | Stop Limit |
-| 5 | Market on close |
 
 #### HandlInst
 
@@ -326,7 +325,7 @@ Type: Char
 | 3 | Immediate or Cancel (IOC) |
 | 4 | Fill or Kill (FOK) |
 | 6 | Good Till Date (GTD) |
-| 7 | At the Close |
+| 7 | At the Close (MOC / LOC) |
 | A | Good for Auction (MOA) |
 
 #### ExecType
