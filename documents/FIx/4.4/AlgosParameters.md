@@ -2,17 +2,29 @@
 
 Fix API 4.4 extension for algo, add this parameters to New Order Single (35=D) or Replace (35=G)
 
-- [TWAP](#twap)
-- [VWAP](#vwap)
-- [POV](#pov)
-- [PEGGED](#pegged)
-- [SNIPER](#sniper)
-- [ICEBERG](#iceberg)
-- [PEGGED/SNIPER](#peggedsniper)
-- [PEGGED/MARKET](#peggedmarket)
-- [TARGETCLOSE](#targetclose)
+- [All requests](#all-requests)
+- [Strategies](#strategies)
+  - [TWAP](#twap)
+  - [VWAP](#vwap)
+  - [POV](#pov)
+  - [PEGGED](#pegged)
+  - [SNIPER](#sniper)
+  - [ICEBERG](#iceberg)
+  - [PEGGED/SNIPER](#peggedsniper)
+  - [PEGGED/MARKET](#peggedmarket)
+  - [TARGETCLOSE](#targetclose)
 
-## TWAP
+## All requests
+
+For all strategies all the folowing tag:
+
+| Tag | TagName | Req | Type | Max Size | Comment |
+| --- | --- | --- | --- | --- | --- |
+| 50001 | TargetStrategy | Y | String | | Valid values: TWAP, VWAP, POV, PEGGED, ICEBERG, SNIPER, PEGGED/SNIPER, PEGGED/MARKET and TARGETCLOSE
+
+## Strategies
+
+### TWAP
 | Tag | TagName | Req | Type | Max Size | Comment |
 | --- | --- | -- | -- | -- | -- |
 | 111 | Max Floor | N | Long | | Maximum displayed quantity |
