@@ -39,22 +39,21 @@ This document describes how to send and manage orders for Brazil markets, for La
 | 109 | ClientID | N | String | | Client identification (Provided by Solutions team) |
 | 50 | SenderSubID | C | String | | Entering Trader |
 | 116 | OnBehalfOfSubID | C | String | | Entering Trader |
-| 22 | SecurityIDSource | Y | String | | Valid values: 8 = Exchange Symbol |
-| 48 | SecurityID | Y | String | | Security ID as defined by exchange (Same as Symbol) |
-| 207 | SecurityExchange | Y | String | | Valid values: BVMF = B3 Exchange |
+| 22 | SecurityIDSource | Y | String | | Valid values: See [IDSource](#idsource) |
+| 48 | SecurityID | Y | String | | Security ID as defined by exchange |
+| 207 | SecurityExchange | Y | String | | Example: BVMF for B3 Exchange |
 | 55 | Symbol | Y | String | | Security symbol on the exchange |
-| 15 | Currency | Y | String | | Valid values: BRL |
+| 15 | Currency | Y | String | | See https://www.iso.org/iso-4217-currency-codes.html |
 | 38 | OrderQty | Y | Long | | Number of shares or contracts ordered |
 | 110 | MinQty | N | Long | | |
 | 1138 | DisplayQty | N | Long | | |
-| 40 | OrderType | Y | Char | 1 | See [Fields](#fields) |
+| 40 | OrderType | Y | Char | 1 | See [OrderType](#ordertype) |
 | 44 | Price | C | Float | | Limit Price for the orders (Required if OrdType == Limit) |
 | 99 | StopPx | N | Float | | |
-| 54 | [Side](#side) | Y | Char | 1 | See [Fields](#fields) |
-| 59 | [TimeInForce](#timeinforce) | N | Char | 1 | See [Fields](#fields) |
+| 54 | [Side](#side) | Y | Char | 1 | See [Side](#side) |
+| 59 | [TimeInForce](#timeinforce) | N | Char | 1 | See [TimeInForce](#timeinforce) |
 | 60 | TransactTime | Y | UTC | | Expected format YYYYMMDD-HH:mm:ss.fff |
-| 421 | Country | Y | String| | Valid values: BR |
-| 453 | NoPartyIDs | Y | Int | | Expected value >= 2, Repeating group |
+| 421 | Country | Y | String| | See https://en.wikipedia.org/wiki/ISO_3166-1 |
 
 #### Replace
 
@@ -68,22 +67,21 @@ This document describes how to send and manage orders for Brazil markets, for La
 | 109 | ClientID | N | String | | Client identification (Provided by Solutions team) |
 | 50 | SenderSubID | C | String | | Entering Trader |
 | 116 | OnBehalfOfSubID | C | String | | Entering Trader |
-| 22 | SecurityIDSource | Y | String | | Valid values: 8 = Exchange Symbol |
-| 48 | SecurityID | Y | String | | Security ID as defined by exchange (Same as Symbol) |
-| 207 | SecurityExchange | Y | String | | Valid values: BVMF = B3 Exchange |
+| 22 | SecurityIDSource | Y | String | | Valid values: See [IDSource](#idsource) |
+| 48 | SecurityID | Y | String | | Security ID as defined by exchange |
+| 207 | SecurityExchange | Y | String | | Example: BVMF for B3 Exchange |
 | 55 | Symbol | Y | String | | Security symbol on the exchange |
-| 15 | Currency | Y | String | | Valid values: BRL |
+| 15 | Currency | Y | String | | See https://www.iso.org/iso-4217-currency-codes.html |
 | 38 | OrderQty | Y | Long | | Number of shares or contracts ordered |
 | 110 | MinQty | N | Long | | |
 | 1138 | DisplayQty | N | Long | | |
-| 40 | OrderType | Y | Char | 1 | See [Fields](#fields) |
+| 40 | OrderType | Y | Char | 1 | See [OrderType](#ordertype) |
 | 44 | Price | C | Float | | Limit Price for the orders (Required if OrdType == Limit) |
 | 99 | StopPx | N | Float | | |
-| 54 | [Side](#side) | Y | Char | 1 | See [Fields](#fields) |
-| 59 | [TimeInForce](#timeinforce) | N | Char | 1 | See [Fields](#fields) |
+| 54 | [Side](#side) | Y | Char | 1 | See [Side](#side) |
+| 59 | [TimeInForce](#timeinforce) | N | Char | 1 | See [TimeInForce](#timeinforce) |
 | 60 | TransactTime | Y | UTC | | Expected format YYYYMMDD-HH:mm:ss.fff |
-| 421 | Country | Y | String| | Valid values: BR |
-| 453 | NoPartyIDs | Y | Int | | Expected value >= 2, Repeating group |
+| 421 | Country | Y | String| | See https://en.wikipedia.org/wiki/ISO_3166-1 |
 
 #### Cancel
 
@@ -160,7 +158,6 @@ This document describes how to send and manage orders for Brazil markets, for La
 | 58 | Text | N | String | | |
 | 1 | Account | C | Int | | Customer account at the Exchange (If DMA BR) |
 | 55 | Symbol | Y | String | | |
-| 453 | NoPartyIDs | Y | Int | | Expected value 1, Repeating group |
 | 115 | OnBehalfOfCompID | C | String | | if present on request |
 | 116 | OnBehalfOfSubID | C | String | | if present on request |
 
@@ -241,3 +238,17 @@ Type: Char
 | 6 | Pending Cancel |
 | 8 | Rejected |
 | C | Expired |
+
+#### IDSource
+
+Type: String
+
+| Value | Name |
+| --- | --- |
+| 1 | CUSIP |
+| 2 | SEDOL |
+| 4 | ISIN |
+| 8 | Exchange Symbol |
+| A | BloombergSymbol |
+| BBC | BloombergCode |
+| BBT | BloombergTicker |
