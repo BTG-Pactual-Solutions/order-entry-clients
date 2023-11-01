@@ -238,6 +238,7 @@ This document describes how to send and manage orders for Brazil markets, for La
 | 151 | LeavesQty | C | Long | | |
 | 1138 | DisplayQty | C | Long | | If present on request |
 | 60 | TransactTime | Y | UTC | | Expected format YYYYMMDD-HH:mm:ss.fff |
+| 6032 | UniqueTradeId | N | | |
 
 #### Reject
 
