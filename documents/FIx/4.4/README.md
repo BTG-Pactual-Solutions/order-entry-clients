@@ -356,6 +356,7 @@ Type: Char
 | 2 | Filled |
 | 3 | Done for day |
 | 4 | Canceled |
+| 5 | Replaced |
 | 6 | Pending Cancel |
 | 8 | Rejected |
 | C | Expired |
