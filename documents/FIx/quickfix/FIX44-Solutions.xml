@@ -252,7 +252,7 @@
 			<component name='InstrmtLegExecGrp' required='N' />
 			<field name='CopyMsgIndicator' required='N' />
 			<component name='MiscFeesGrp' required='N' />
-			<component name='UniqueTradeID' required='N' />
+			<field name='UniqueTradeID' required='N' />
 		</message>
 		<message name='OrderCancelReject' msgtype='9' msgcat='app'>
 			<field name='OrderID' required='Y' />
