@@ -3,42 +3,51 @@
 Rest API documentation to integrate with Solutions Order Entry.
  
 ## Summary
-- [Authentication](#authentication)
-- [Observation](#observation)
-- [Create Order](#create-order)
-  - [Required parameters](#required-parameters)
-  - [Create Order (DMA/Limit)](#create-order-dmalimit)
-  - [Create Order (DMA/Market)](#create-order-dmamarket)
-  - [Create Order (DMA/StopLimit)](#create-order-dmastoplimit)
-- [Change order](#change-order)
-  - [Change Order (DMA/Limit)](#change-order-dmalimit)
-  - [Change Order (DMA/Market)](#change-order-dmamarket)
-  - [Change Order (DMA/StopLimit)](#change-order-dmastoplimit)
-- [Query and read](#query-and-read)
-  - [Query Order By Id](#query-order-by-id)
-  - [Consult All Orders](#consult-all-orders)
-- [Cancel](#cancel)
-  - [Cancel Order By Id](#cancel-order-by-id)
-  - [Cancel All User Order](#cancel-all-user-order)
-- [Algos](#algos)
-  - [TWAP](#twap)
-  - [VWAP](#vwap)
-  - [POV](#pov)
-  - [PEGGED](#pegged)
-  - [SNIPER](#sniper)
-  - [PEGGED-SNIPER](#pegged-sniper)
-  - [ICEBERG](#iceberg)
-  - [TARGETCLOSE](#targetclose)
-- [Dictionary](#dictionary)
+- [1. Authentication](#1-authentication)
+- [2. Observation](#2-observation)
+- [3. Create Order](#3-create-order)
+  - [3.1. Required parameters](#31-required-parameters)
+  - [3.2. Create Order (DMA/Limit)](#32-create-order-dmalimit)
+  - [3.3. Create Order (DMA/Market)](#33-create-order-dmamarket)
+  - [3.4. Create Order (DMA/StopLimit)](#34-create-order-dmastoplimit)
+- [4. Change order](#4-change-order)
+  - [4.1. Required parameters](#41-required-parameters)
+  - [4.2. Change Order (DMA/Limit)](#42-change-order-dmalimit)
+  - [4.3. Change Order (DMA/Market)](#43-change-order-dmamarket)
+  - [4.4. Change Order (DMA/StopLimit)](#44-change-order-dmastoplimit)
+- [5. Query and read](#5-query-and-read)
+  - [5.1. Parameters result](#51-parameters-result)
+  - [5.2. Query Order By Id](#52-query-order-by-id)
+  - [5.3. Query Order By Parent](#53-query-order-by-parent)
+  - [5.4. Query Order By Memo](#54-query-order-by-memo)
+  - [5.5. Query Order By Status](#55-query-order-by-status)
+  - [5.6. Query Order By Symbol](#56-query-order-by-symbol)
+  - [5.7. Query Order By Complete](#57-query-order-by-complete)
+  - [5.8. Query Order By Side](#58-query-order-by-side)  
+  - [5.9. Consult All Orders](#59-consult-all-orders)
+- [6. Cancel](#6-cancel)
+  - [6.1. Cancel Order By Id](#61-cancel-order-by-id)
+  - [6.2. Cancel All User Order](#62-cancel-all-user-order)
+- [7. Algos](#7-algos)
+  - [7.1. TWAP](#71-twap)
+  - [7.2. VWAP](#72-vwap)
+  - [7.3. POV](#73-pov)
+  - [7.4. PEGGED](#74-pegged)
+  - [7.5. SNIPER](#75-sniper)
+  - [7.6. PEGGED-SNIPER](#76-pegged-sniper)
+  - [7.7. ICEBERG](#77-iceberg)
+  - [7.8. TARGETCLOSE](#78-targetclose)
+- [8. Type Dictionary](#8-type-dictionary)
+- [9. Formats](#9-formats)
  
-## Authentication
+## 1. Authentication
  
 It is necessary to provide a Bearer authorization token in the header of all
 calls and requests to the REST API. In this documentation, you may notice that a token
 is required when seeing the following character set: `{token}`. Consider replacing
 this field with your own authorization token.
  
-## Observation
+## 2. Observation
  
 This document describes how to submit and manage orders for the onshore market
 (Brazil), for offshore integration additional fields are required for instrument identification.
@@ -50,10 +59,10 @@ Depending on the library or tool that you are using to request our API, it may b
 | **Content-Type** | application/json |
  
  
----
-## Create Order
+
+## 3. Create Order
  
-#### Required parameters
+### 3.1. Required parameters
 |Tag|Key|Required|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |55|symbol|Y|String|-|N|Ticker symbol. Common, "human understood" representation of the security|
@@ -67,12 +76,12 @@ Depending on the library or tool that you are using to request our API, it may b
 |21|[isDMA](#isdma)|Y|Boolean|-|N|Indicates whether an order is DMA. If not, the order is classified as CARE.|
 |109|[entity](#entity)|Y|String|-|N|Specifies the entity.|
 |5149|memo|N|String|-|N|Custom field.|
+|99|stopPx|N|Decimal|-|N|Specifies the stop price. Required in a StopLimit request.|
  
  
- 
-#### Create Order (DMA/Limit)
- 
-#### POST /v1/order
+### 3.2. Create Order (DMA/Limit)
+ `POST` `/v1/order`
+
 #### Header
 | Key | Value |
 | --- | --- |
@@ -81,33 +90,32 @@ Depending on the library or tool that you are using to request our API, it may b
 #### Body
 ```JSON
 {
- "symbol": "PETR4",                
- "side": "S",                      
- "qty": 200,                        
- "account": 114,                    
- "execBroker": "935",              
- "ordType": "Limit",                
- "timeInForce": "day",              
- "price": 90.56,                    
- "isDMA": true,                    
- "entity": "CLIENT_UAT",            
- "memo": "TEXT"                    
+  "symbol": "PETR4",                
+  "side": "S",                      
+  "qty": 200,                        
+  "account": 114,                    
+  "execBroker": "935",              
+  "ordType": "Limit",                
+  "timeInForce": "day",              
+  "price": 90.56,                    
+  "isDMA": true,                    
+  "entity": "CLIENT_UAT",            
+  "memo": "TEXT"                    
 }
 ```
  
-### Response
-#### 202 Accept
+#### Response - 202 Accepted
 ``` JSON
 {
  "message": "deaa13ad1cd74868a591b70fe8e93523"
 }
 ```
-Attention, the code that returns as the order creation response, example:
-`deaa13ad1cd74868a591b70fe8e93523`, will be used as the id to send a [Change Order (DMA/Limit)](#change-order-dmalimit)
-or [Cancel Order By Id](#cancel-order-by-id)
+> Attention, the code that returns as the order creation response, example:
+`deaa13ad1cd74868a591b70fe8e93523`, will be used as the id to send a [Change Order (DMA/Limit)](#42-change-order-dmalimit)
+or [Cancel Order By Id](#61-cancel-order-by-id)
  
-### Create Order (DMA/MARKET)
-#### POST /v1/order
+### 3.3. Create Order (DMA/MARKET)
+`POST` `/v1/order`
 #### Header
 | Key | Value |
 | --- | --- |
@@ -123,26 +131,23 @@ or [Cancel Order By Id](#cancel-order-by-id)
  "execBroker": "935",              
  "ordType": "Market",              
  "timeInForce": "day",              
- "price": "90.56",                  
  "isDMA": "true",                  
  "entity": "CLIENT_UAT",            
  "memo": "TEXT"                    
 }
 ```
-#### Response
-##### 202 Accept
+#### Response - 202 Accepted
 ``` JSON
 {
  "message": "deaa13ad1cd74868a591b70fe8e93523"
 }
 ```
-Attention, the code returned as the order creation response, example:
-`deaa13ad1cd74868a591b70fe8e93523`, will be used as the id to send a [Change Order (DMA/Market)](#change-order-dmamarket)
-or [Cancel Order By Id](#cancel-order-by-id)
+> Attention, the code returned as the order creation response, example:
+`deaa13ad1cd74868a591b70fe8e93523`, will be used as the id to send a [Change Order (DMA/Market)](#43-change-order-dmamarket)
+or [Cancel Order By Id](#61-cancel-order-by-id)
  
-### Create Order (DMA/StopLimit)
-### POST
-#### /v1/order
+### 3.4. Create Order (DMA/StopLimit)
+`POST` `/v1/order`
  
 #### Header
 | Key | Value |
@@ -160,30 +165,30 @@ or [Cancel Order By Id](#cancel-order-by-id)
  "ordType": "Stop limit",          
  "timeInForce": "day",              
  "price": "90.56",                  
+ "stopPx": "90.00",
  "isDMA": "true",                  
  "entity": "CLIENT_UAT",            
  "memo": "TEXT"                    
 }
 ```
-#### Response
-##### 202 Accept
+#### Response - 202 Accepted
 ``` JSON
 {
  "message": "deaa13ad1cd74868a591b70fe8e93523"
 }
 ```
-Attention, the code returned as the order creation response, example:
-“deaa13ad1cd74868a591b70fe8e93523”, will be used as the id to send a [Change Order (DMA/Limit)](#change-order-dmalimit)
-or [Cancel Order By Id](#cancel-order-by-id)
+> Attention, the code returned as the order creation response, example:
+“deaa13ad1cd74868a591b70fe8e93523”, will be used as the id to send a [Change Order (DMA/Limit)](#42-change-order-dmalimit)
+or [Cancel Order By Id](#61-cancel-order-by-id)
  
 ---
  
-## Change order
+## 4. Change order
  
-#### Required parameters
+### 4.1. Required parameters
 |Tag|Key|Required|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
-|-|id|Y|String|-|N|ID returned as result from [Create Order](#create-order) request|
+|-|id|Y|String|-|N|ID returned as result from [Create Order](#3-create-order) request|
 |55|symbol|Y|String|-|N|Ticker symbol. Common, "human understood" representation of the security|
 |54|[side](#side)|Y|String|-|N|Side of order. Valid values "B" or "S"|
 |53|qty|Y|Decimal|-|Y|Overall/total quantity|
@@ -193,9 +198,11 @@ or [Cancel Order By Id](#cancel-order-by-id)
 |59|[timeInForce](#timeinforce)|Y|String|-|Y|Specifies how long the order remains in effect. |
 |44|price|Y|Decimal|-|Y|Price per unit of quantity, remove this tag to replace order to Market|
 |109|[entity](#entity)|Y|String|-|N|Specifies the entity.|
+|99|stopPx|N|Decimal|-|N|Specifies the stop price. Required in a StopLimit request.|
+
  
-### Change Order (DMA/Limit)
-#### PUT /v1/order/
+### 4.2. Change Order (DMA/Limit)
+`PUT` `/v1/order`
 #### Header
 | Key | Value |
 | --- | --- |
@@ -214,16 +221,15 @@ or [Cancel Order By Id](#cancel-order-by-id)
 }
 ```
  
-#### Response
-#### 202 Accept
+#### Response - 202 Accepted
 ``` JSON
 {
  "message": "deaa13ad1cd74868a591b70fe8e93523"
 }
 ```
  
-### Change Order (DMA/Market)
-#### PUT /v1/order
+### 4.3. Change Order (DMA/Market)
+`PUT` `/v1/order`
 #### Header
 | Key | Value |
 | --- | --- |
@@ -241,16 +247,15 @@ or [Cancel Order By Id](#cancel-order-by-id)
 }
  
 ```
-#### Response
-#### 202 Accept
+#### Response - 202 Accepted
 ``` JSON
 {
  "message": "deaa13ad1cd74868a591b70fe8e93523"
 }
 ```
  
-## Change Order (DMA/StopLimit)
-### PUT /v1/order
+### 4.4. Change Order (DMA/StopLimit)
+`PUT` `/v1/order`
 #### Header
 | Key | Value |
 | --- | --- |
@@ -268,16 +273,15 @@ or [Cancel Order By Id](#cancel-order-by-id)
 }
  
 ```
-### Response
-#### 202 Accept
+#### Response - 202 Accepted
 ``` JSON
 {
  "message": "deaa13ad1cd74868a591b70fe8e93523"
 }
 ```
-## Query and Read
+## 5. Query and Read
  
-### Parameters result
+### 5.1. Parameters result
 |Tag|Name|Type|Comment|
 |---|---|---|---|
 |17|execId|String|Specifies the unique identifier of the execution message as assigned by the sell-side.|
@@ -292,7 +296,7 @@ or [Cancel Order By Id](#cancel-order-by-id)
 |41|origClOrdID|String|Specifies the order origin identifier as assigned by the institution.|
 |198|secondaryOrderID|String|Specifies the order's secondary identifier as assigned by sell-side.|
 |58|text|String|Custom field. Display rejection reason when [ExecType](#execType) is Rejected|
-||memo|String|Custom field. Returns the value sent on [Create Order](#create-order)|
+||memo|String|Custom field. Returns the value sent on [Create Order](#3-create-order)|
 |1|account|Integer|Specifies the account.|
 ||resolvedAssignedUser|String|Identifies the user.|
 |109|[entity](#entity)|String|Specifies the entity.|
@@ -311,8 +315,8 @@ or [Cancel Order By Id](#cancel-order-by-id)
 |39|[ordStatus](#ordstatus)|String|Specifies the current OrdStatus. |
 ||service|String|Specifies the service used.|
  
-### Query Order By Id
-### GET /v1/order/id/{id}
+### 5.2. Query Order By Id
+``GET`` ``/v2/order/id/{id}``
 #### Header
 | Key | Value |
 | --- | --- |
@@ -321,8 +325,7 @@ or [Cancel Order By Id](#cancel-order-by-id)
 #### Body
 Not applicable.
  
-### Response
-#### 200 Ok
+#### Response - 200 Ok
 ``` JSON
 [
  {
@@ -358,11 +361,311 @@ Not applicable.
  "service": "DMA"
  }
 ]
- 
+```
+
+### 5.3. Query Order by Parent
+#### `GET` `/v2/order?parent={boolValue}`
+`boolValue` pode assumir valores de `true` ou `false`
+
+#### Header
+| Key | Value |
+| --- | --- |
+| Authorization | Bearer {token} |
+
+#### Body
+Not applicable.
+
+#### Response - 200 Ok
+``` JSON
+[
+ {
+ "execId": "840511000000001621",
+ "orderID": "8493469644",
+ "clOrdId": "4897c8f64fb64d9c8b41b08d0496ad07",
+ "symbol": "ALPA4",
+ "price": 8.96000000,
+ "stopPx": null,
+ "minQty": null,
+ "maxFloor": null,
+ "workingIndicator": "N",
+ "origClOrdID": null,
+ "secondaryOrderID": "8443791619",
+ "text": null,
+ "memo": null,
+ "account": "114",
+ "resolvedAssignedUser": "user@teste.com",
+ "entity": "CLIENT_UAT",
+ "execBroker": "935",
+ "applId": "AABB054",
+ "tradeDate": "2023-07-19",
+ "side": "Sell",
+ "qty": "100",
+ "execType": "New",
+ "avgPx": "0.0000",
+ "cumQty": "0",
+ "ordType": "Limit",
+ "transactTime": "2023-07-19T11:37:07.656-03:00",
+ "timeInForce": "Day",
+ "expireDate": "2023-07-19T03:00",
+ "ordStatus": "New",
+ "service": "DMA"
+ }
+]
+```
+
+### 5.4. Query Order by Memo
+
+#### `GET` `/v2/order?memo={memo}`
+`memo` pode assumir o valor de qualquer string.
+
+#### Header
+| Key | Value |
+| --- | --- |
+| Authorization | Bearer {token} |
+
+#### Body
+Not applicable.
+
+#### Response - 200 Ok
+``` JSON
+[
+ {
+ "execId": "840511000000001621",
+ "orderID": "8493469644",
+ "clOrdId": "4897c8f64fb64d9c8b41b08d0496ad07",
+ "symbol": "ALPA4",
+ "price": 8.96000000,
+ "stopPx": null,
+ "minQty": null,
+ "maxFloor": null,
+ "workingIndicator": "N",
+ "origClOrdID": null,
+ "secondaryOrderID": "8443791619",
+ "text": null,
+ "memo": null,
+ "account": "114",
+ "resolvedAssignedUser": "user@teste.com",
+ "entity": "CLIENT_UAT",
+ "execBroker": "935",
+ "applId": "AABB054",
+ "tradeDate": "2023-07-19",
+ "side": "Sell",
+ "qty": "100",
+ "execType": "New",
+ "avgPx": "0.0000",
+ "cumQty": "0",
+ "ordType": "Limit",
+ "transactTime": "2023-07-19T11:37:07.656-03:00",
+ "timeInForce": "Day",
+ "expireDate": "2023-07-19T03:00",
+ "ordStatus": "New",
+ "service": "DMA"
+ }
+]
+```
+
+### 5.5. Query Order by Status
+#### `GET` `/v2/order?status={status}`
+`status` pode assumir os valores: ``New``, ``Partial``, ``Filled``, `Done for day`, `Canceled`, `Replaced`, `Pending Cancel`, `Rejected`, `Pending New`, `Expired` e `Pending Replace`.
+
+#### Header
+| Key | Value |
+| --- | --- |
+| Authorization | Bearer {token} |
+
+#### Body
+Not applicable.
+
+#### Response - 200 Ok
+``` JSON
+[
+ {
+ "execId": "840511000000001621",
+ "orderID": "8493469644",
+ "clOrdId": "4897c8f64fb64d9c8b41b08d0496ad07",
+ "symbol": "ALPA4",
+ "price": 8.96000000,
+ "stopPx": null,
+ "minQty": null,
+ "maxFloor": null,
+ "workingIndicator": "N",
+ "origClOrdID": null,
+ "secondaryOrderID": "8443791619",
+ "text": null,
+ "memo": null,
+ "account": "114",
+ "resolvedAssignedUser": "user@teste.com",
+ "entity": "CLIENT_UAT",
+ "execBroker": "935",
+ "applId": "AABB054",
+ "tradeDate": "2023-07-19",
+ "side": "Sell",
+ "qty": "100",
+ "execType": "New",
+ "avgPx": "0.0000",
+ "cumQty": "0",
+ "ordType": "Limit",
+ "transactTime": "2023-07-19T11:37:07.656-03:00",
+ "timeInForce": "Day",
+ "expireDate": "2023-07-19T03:00",
+ "ordStatus": "New",
+ "service": "DMA"
+ }
+]
+```
+
+### 5.6. Query Order by Symbol
+#### `GET` `/v2/order?symbol={symbol}`
+`symbol` deve ser um ticker válido.
+
+#### Header
+| Key | Value |
+| --- | --- |
+| Authorization | Bearer {token} |
+
+#### Body
+Not applicable.
+
+#### Response - 200 Ok
+``` JSON
+[
+ {
+ "execId": "840511000000001621",
+ "orderID": "8493469644",
+ "clOrdId": "4897c8f64fb64d9c8b41b08d0496ad07",
+ "symbol": "ALPA4",
+ "price": 8.96000000,
+ "stopPx": null,
+ "minQty": null,
+ "maxFloor": null,
+ "workingIndicator": "N",
+ "origClOrdID": null,
+ "secondaryOrderID": "8443791619",
+ "text": null,
+ "memo": null,
+ "account": "114",
+ "resolvedAssignedUser": "user@teste.com",
+ "entity": "CLIENT_UAT",
+ "execBroker": "935",
+ "applId": "AABB054",
+ "tradeDate": "2023-07-19",
+ "side": "Sell",
+ "qty": "100",
+ "execType": "New",
+ "avgPx": "0.0000",
+ "cumQty": "0",
+ "ordType": "Limit",
+ "transactTime": "2023-07-19T11:37:07.656-03:00",
+ "timeInForce": "Day",
+ "expireDate": "2023-07-19T03:00",
+ "ordStatus": "New",
+ "service": "DMA"
+ }
+]
+```
+
+### 5.7. Query Order by Complete
+#### `GET` `/v2/order?complete={boolValue}`
+`boolValue` pode assumir o valor `true` ou `false`.
+
+#### Header
+| Key | Value |
+| --- | --- |
+| Authorization | Bearer {token} |
+
+#### Body
+Not applicable.
+
+#### Response - 200 Ok
+``` JSON
+[
+ {
+ "execId": "840511000000001621",
+ "orderID": "8493469644",
+ "clOrdId": "4897c8f64fb64d9c8b41b08d0496ad07",
+ "symbol": "ALPA4",
+ "price": 8.96000000,
+ "stopPx": null,
+ "minQty": null,
+ "maxFloor": null,
+ "workingIndicator": "N",
+ "origClOrdID": null,
+ "secondaryOrderID": "8443791619",
+ "text": null,
+ "memo": null,
+ "account": "114",
+ "resolvedAssignedUser": "user@teste.com",
+ "entity": "CLIENT_UAT",
+ "execBroker": "935",
+ "applId": "AABB054",
+ "tradeDate": "2023-07-19",
+ "side": "Sell",
+ "qty": "100",
+ "execType": "New",
+ "avgPx": "0.0000",
+ "cumQty": "100",
+ "ordType": "Limit",
+ "transactTime": "2023-07-19T11:37:07.656-03:00",
+ "timeInForce": "Day",
+ "expireDate": "2023-07-19T03:00",
+ "ordStatus": "Filled",
+ "service": "DMA"
+ }
+]
+```
+
+### 5.8. Query Order by Side
+#### `GET` `/v2/order?Side={side}`
+`side` pode assumir valor de `Sell` ou `Buy`.
+
+#### Header
+| Key | Value |
+| --- | --- |
+| Authorization | Bearer {token} |
+
+#### Body
+Not applicable.
+
+#### Response - 200 Ok
+``` JSON
+[
+ {
+ "execId": "840511000000001621",
+ "orderID": "8493469644",
+ "clOrdId": "4897c8f64fb64d9c8b41b08d0496ad07",
+ "symbol": "ALPA4",
+ "price": 8.96000000,
+ "stopPx": null,
+ "minQty": null,
+ "maxFloor": null,
+ "workingIndicator": "N",
+ "origClOrdID": null,
+ "secondaryOrderID": "8443791619",
+ "text": null,
+ "memo": null,
+ "account": "114",
+ "resolvedAssignedUser": "user@teste.com",
+ "entity": "CLIENT_UAT",
+ "execBroker": "935",
+ "applId": "AABB054",
+ "tradeDate": "2023-07-19",
+ "side": "Sell",
+ "qty": "100",
+ "execType": "New",
+ "avgPx": "0.0000",
+ "cumQty": "0",
+ "ordType": "Limit",
+ "transactTime": "2023-07-19T11:37:07.656-03:00",
+ "timeInForce": "Day",
+ "expireDate": "2023-07-19T03:00",
+ "ordStatus": "New",
+ "service": "DMA"
+ }
+]
 ```
  
-### Consult All Orders
-#### GET /v1/order/
+### 5.9. Consult All Orders
+``GET`` ``/v1/order/``
 #### Header
 | Key | Value |
 | --- | --- |
@@ -371,8 +674,7 @@ Not applicable.
 #### Body
 Not applicable.
  
-### Response
-#### 200 Ok
+#### Response - 200 Ok
 ``` JSON
 [
  {
@@ -443,8 +745,10 @@ Not applicable.
  
 ```
  
-## Cancel Order By Id
-### DELETE /v1/order/`{id}`
+## 6. Cancel
+
+### 6.1. Cancel Order By Id
+``DELETE`` ``/v1/order/{id}``
 #### Header
 | Key | Value |
 | --- | --- |
@@ -453,17 +757,15 @@ Not applicable.
 #### Body
 Not applicable.
  
-### Response
-#### 202 Accepted
+#### Response - 202 Accepted
 ``` JSON
 {
  "message": "deaa13ad1cd74868a591b70fe8e93523"
 }
 ```
- 
- 
-## Cancel All User Order
-### DELETE /v1/order/myorders
+
+### 6.2. Cancel All User Order
+``DELETE`` ``/v1/order/myorders``
 #### Header
 | Key | Value |
 | --- | --- |
@@ -472,8 +774,7 @@ Not applicable.
 #### Body
 Not applicable.
  
-### Response
-#### 202 Accepted
+#### Response - 202 Accepted
 ``` JSON
 {
  "message": "deaa13ad1cd74868a591b70fe8e93523"
@@ -481,10 +782,10 @@ Not applicable.
 ```
 ---
  
-## Algos
+## 7. Algos
 Below are the standard algos (for premium algos please consult Solutions team).
  
-### Parameter default
+#### Parameter default
 Add to the body the fields `"strategy"` and `"strategyParameter"` like the example bellow.
  
 #### Body example
@@ -515,20 +816,20 @@ For the `"strategyParameter"` check out the parameters respectively
 ### Strategies
 | strategyName        |
 | ---                 |
-| [twap](#twap)       |  
-| [vwap](#vwap)       |  
-| [pov](#pov)         |  
-| [pegged](#pegged)   |
-| [sniper](#sniper)   |
-| [pegged/sniper](#pegged-sniper) |
-| [iceberg](#iceberg) |
-| [targetclose](#targetclose) |
+| [TWAP](#71-twap)       |  
+| [VWAP](#72-vwap)       |  
+| [POV](#73-pov)        |  
+| [PEGGED](#74-pegged)   |
+| [SNIPER](#75-sniper)   |
+| [PEGGED-SNIPER](#76-pegged-sniper) |
+| [ICEBERG](#77-iceberg) |
+| [TARGETCLOSE](#78-targetclose) |
  
  
  
-### Strategy parameters
+<!-- #### Strategy parameters -->
  
-#### TWAP
+### 7.1. TWAP
  
 |Tag|Key|Required|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
@@ -570,7 +871,7 @@ For the `"strategyParameter"` check out the parameters respectively
 }
  ```
 
-#### VWAP
+### 7.2. VWAP
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -614,7 +915,7 @@ For the `"strategyParameter"` check out the parameters respectively
 }
 ```
 
-#### POV
+### 7.3. POV
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -659,7 +960,7 @@ For the `"strategyParameter"` check out the parameters respectively
 ```
 
 
-#### PEGGED
+### 7.4. PEGGED
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -672,7 +973,7 @@ For the `"strategyParameter"` check out the parameters respectively
 |50020|close-auction-participation|N|Decimal||Y|Close auction target participation of the market volume (in percentage) |
 |50021|max-close-auction-participation|N|Decimal||Y|Close auction maximum participation of the market volume (in percentage)|
 
- #### POV Body example
+ #### PEGGED Body example
 ``` json
 {
   "symbol": "PETR4",
@@ -696,7 +997,7 @@ For the `"strategyParameter"` check out the parameters respectively
 ```
 
  
-#### SNIPER
+### 7.5. SNIPER
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |110|min-qty|N|Long||Y|Minimum quantity of an order to be executed|
@@ -708,7 +1009,7 @@ For the `"strategyParameter"` check out the parameters respectively
 |50020|close-auction-participation|N|Decimal||Y|Close auction target participation of the market volume (in percentage) |
 |50021|max-close-auction-participation|N|Decimal||Y|Close auction maximum participation of the market volume (in percentage)|
 
- #### SNIPER Body example
+#### SNIPER Body example
 ``` json
 {
   "symbol": "PETR4",
@@ -732,7 +1033,7 @@ For the `"strategyParameter"` check out the parameters respectively
 
 
  
-#### PEGGED/SNIPER
+### 7.6. PEGGED-SNIPER
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -747,7 +1048,7 @@ For the `"strategyParameter"` check out the parameters respectively
 |50020|close-auction-participation|N|Decimal||Y|Close auction target participation of the market volume (in percentage) |
 |50021|max-close-auction-participation|N|Decimal||Y|Close auction maximum participation of the market volume (in percentage)|
 
- #### PEGGED/SNIPER Body example
+#### PEGGED-SNIPER Body example
 ``` json
 {
   "symbol": "PETR4",
@@ -770,7 +1071,7 @@ For the `"strategyParameter"` check out the parameters respectively
 }
 ```
  
-#### ICEBERG
+### 7.7. ICEBERG
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -805,7 +1106,7 @@ For the `"strategyParameter"` check out the parameters respectively
 }
 ```
  
-#### TARGETCLOSE
+### 7.8. TARGETCLOSE
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -818,7 +1119,7 @@ For the `"strategyParameter"` check out the parameters respectively
 |50020|close-auction-participation|N|Decimal||Y|Close auction target participation of the market volume (in percentage)|
 |50021|max-close-auction-participation|N|Decimal||Y|Close auction maximum participation of the market volume (in percentage)|
 
- #### TARGETCLOSE Body example
+#### TARGETCLOSE Body example
 ``` json
 {
   "symbol": "PETR4",
@@ -841,7 +1142,7 @@ For the `"strategyParameter"` check out the parameters respectively
 ```
  
  
-## Type Dictionary
+## 8. Type Dictionary
  
 ### Side
 Identifies the side of the order.
@@ -932,15 +1233,13 @@ Specifies the type of execution.
 | Requested | Requested |
  
  
-### Dictionary
- 
+## 9. Formats
+
 #### UTC
-yyyyMMdd-HH:mm:ss (UTC)
- 
+``yyyyMMdd-HH:mm:ss``
+
 #### Date
-yyyy-MM-dd or yyyy-MM-ddTHH:mm
- 
-#### DateTime (json format)
-2024-04-25T11:03:25.603-03:00
-yyyy-MM-ddTHH:mm:ss.mmmm-GMTHH:GMTMM
- 
+``yyyy-MM-dd`` or ``yyyy-MM-ddTHH:mm``
+
+#### DateTime
+(json format) ``2024-04-25T11:03:25.603-03:00`` or ``yyyy-MM-ddTHH:mm:ss.mmmm-GMTHH:GMTMM`` 
