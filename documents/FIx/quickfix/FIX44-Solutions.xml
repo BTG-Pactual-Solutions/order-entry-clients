@@ -1,4 +1,4 @@
-﻿<fix type='FIX' major='4' minor='4' servicepack='0'>
+<fix type='FIX' major='4' minor='4' servicepack='0'>
 	<header>
 		<field name='BeginString' required='Y' />
 		<field name='BodyLength' required='Y' />
@@ -51,6 +51,12 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<field name='ExecTransType' required='N' />
+			<field name='CheckSum' required='N' />
+			<field name='MsgSeqNum' required='N' />
+			<field name='SenderCompID' required='N' />
+			<field name='SendingTime' required='N' />
+			<field name='TargetCompID' required='N' />
 		</message>
 		<message name='SequenceReset' msgtype='4' msgcat='admin'>
 			<field name='GapFillFlag' required='N' />
@@ -65,27 +71,27 @@
 			<field name='IOIID' required='Y' />
 			<field name='IOITransType' required='Y' />
 			<field name='IOIRefID' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='Side' required='Y' />
 			<field name='QtyType' required='N' />
-			<component name='OrderQtyData' required='N' />
 			<field name='IOIQty' required='Y' />
 			<field name='Currency' required='N' />
-			<component name='Stipulations' required='N' />
-			<component name='InstrmtLegIOIGrp' required='N' />
 			<field name='PriceType' required='N' />
 			<field name='Price' required='N' />
 			<field name='ValidUntilTime' required='N' />
 			<field name='IOIQltyInd' required='N' />
 			<field name='IOINaturalFlag' required='N' />
-			<component name='IOIQualGrp' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
 			<field name='TransactTime' required='N' />
 			<field name='URLLink' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='OrderQtyData' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='InstrmtLegIOIGrp' required='N' />
+			<component name='IOIQualGrp' required='N' />
 			<component name='RoutingGrp' required='N' />
 			<component name='SpreadOrBenchmarkCurveData' required='N' />
 			<component name='YieldData' required='N' />
@@ -94,9 +100,6 @@
 			<field name='AdvId' required='Y' />
 			<field name='AdvTransType' required='Y' />
 			<field name='AdvRefID' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='AdvSide' required='Y' />
 			<field name='Quantity' required='Y' />
 			<field name='QtyType' required='N' />
@@ -111,12 +114,26 @@
 			<field name='LastMkt' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
 		</message>
 		<message name='ExecutionReport' msgtype='8' msgcat='app'>
+			<field name='Side' required='N' />
 			<field name='OrderID' required='N' />
 			<field name='SecondaryOrderID' required='N' />
 			<field name='SecondaryClOrdID' required='N' />
 			<field name='SecondaryExecID' required='N' />
+			<field name='SenderCompID' required='N' />
+			<field name='Symbol' required='N' />
+			<field name='NoPartyIDs' required='N' />
+			<field name='SenderSubID' required='N' />
+			<field name='SendingTime' required='N' />
+			<field name='PartyID' required='N' />
+			<field name='PartyIDSource' required='N' />			
+			<field name='PartyRole' required='N' />
+			<field name='TargetCompID' required='N' />
+			<field name='OnBehalfOfCompID' required='N' />
 			<field name='ClOrdID' required='N' />
 			<field name='ClientId' required='N' />
 			<field name='OrigClOrdID' required='N' />
@@ -126,9 +143,7 @@
 			<field name='MassStatusReqID' required='N' />
 			<field name='TotNumReports' required='N' />
 			<field name='LastRptRequested' required='N' />
-			<component name='Parties' required='N' />
 			<field name='TradeOriginationDate' required='N' />
-			<component name='ContraGrp' required='N' />
 			<field name='ListID' required='N' />
 			<field name='CrossID' required='N' />
 			<field name='OrigCrossID' required='N' />
@@ -150,19 +165,13 @@
 			<field name='SettlDate' required='N' />
 			<field name='CashMargin' required='N' />
 			<field name='ClearingFeeIndicator' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='Side' required='Y' />
-			<component name='Stipulations' required='N' />
 			<field name='QtyType' required='N' />
-			<component name='OrderQtyData' required='N' />
 			<field name='OrdType' required='N' />
+			<field name='OrderQty' required='N' />
 			<field name='PriceType' required='N' />
 			<field name='Price' required='N' />
 			<field name='StopPx' required='N' />
-			<component name='PegInstructions' required='N' />
-			<component name='DiscretionInstructions' required='N' />
 			<field name='PeggedPrice' required='N' />
 			<field name='DiscretionPrice' required='N' />
 			<field name='TargetStrategy' required='N' />
@@ -202,9 +211,6 @@
 			<field name='TradeDate' required='N' />
 			<field name='TransactTime' required='N' />
 			<field name='ReportToExch' required='N' />
-			<component name='CommissionData' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='YieldData' required='N' />
 			<field name='GrossTradeAmt' required='N' />
 			<field name='NumDaysInterest' required='N' />
 			<field name='ExDate' required='N' />
@@ -248,14 +254,42 @@
 			<field name='PriorityIndicator' required='N' />
 			<field name='PriceImprovement' required='N' />
 			<field name='LastLiquidityInd' required='N' />
+			<field name='CopyMsgIndicator' required='N' />
+			<field name='ExecTransType' required='N' />
+			<field name='UniqueTradeID' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='Parties' required='N' />
+			<component name='ContraGrp' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='OrderQtyData' required='N' />
+			<component name='PegInstructions' required='N' />
+			<component name='DiscretionInstructions' required='N' />
+			<component name='CommissionData' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='YieldData' required='N' />
 			<component name='ContAmtGrp' required='N' />
 			<component name='InstrmtLegExecGrp' required='N' />
-			<field name='CopyMsgIndicator' required='N' />
 			<component name='MiscFeesGrp' required='N' />
-			<field name='UniqueTradeID' required='N' />
 		</message>
 		<message name='OrderCancelReject' msgtype='9' msgcat='app'>
+			<field name='ExecTransType' required='N' />			
+			<field name='OrdType' required='N' />			
+			<field name='CheckSum' required='N' />			
+			<field name='LeavesQty' required='N' />
+			<field name='ExecType' required='N' />
+			<field name='Side' required='N' />
+			<field name='Price' required='N' />
+			<field name='Symbol' required='N' />
+			<field name='OrderQty' required='N' />	
 			<field name='OrderID' required='Y' />
+			<field name='ExecID' required='N' />
+			<field name='CumQty' required='N' />
+			<field name='AvgPx' required='N' />
+			<field name='TargetCompID' required='N' />
+			<field name='SendingTime' required='N' />
+			<field name='SenderCompID' required='N' />
 			<field name='SecondaryOrderID' required='N' />
 			<field name='SecondaryClOrdID' required='N' />
 			<field name='ClOrdID' required='Y' />
@@ -276,8 +310,9 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
-			<field name='ExecType' required='N' />
-			<field name='Symbol' required='N' />
+			<field name='SecurityID' required='N' />
+			<field name='SecurityIDSource' required='N' />
+			<field name='SecurityExchange' required='N' />
 			<component name='Parties' required='N' />
 		</message>
 		<message name='Logon' msgtype='A' msgcat='admin'>
@@ -302,14 +337,14 @@
 			<field name='Headline' required='Y' />
 			<field name='EncodedHeadlineLen' required='N' />
 			<field name='EncodedHeadline' required='N' />
+			<field name='URLLink' required='N' />
+			<field name='RawDataLength' required='N' />
+			<field name='RawData' required='N' />
 			<component name='RoutingGrp' required='N' />
 			<component name='InstrmtGrp' required='N' />
 			<component name='InstrmtLegGrp' required='N' />
 			<component name='UndInstrmtGrp' required='N' />
 			<component name='LinesOfTextGrp' required='Y' />
-			<field name='URLLink' required='N' />
-			<field name='RawDataLength' required='N' />
-			<field name='RawData' required='N' />
 		</message>
 		<message name='Email' msgtype='C' msgcat='app'>
 			<field name='EmailThreadID' required='Y' />
@@ -318,21 +353,21 @@
 			<field name='Subject' required='Y' />
 			<field name='EncodedSubjectLen' required='N' />
 			<field name='EncodedSubject' required='N' />
+			<field name='OrderID' required='N' />
+			<field name='ClOrdID' required='N' />
+			<field name='RawDataLength' required='N' />
+			<field name='RawData' required='N' />
 			<component name='RoutingGrp' required='N' />
 			<component name='InstrmtGrp' required='N' />
 			<component name='UndInstrmtGrp' required='N' />
 			<component name='InstrmtLegGrp' required='N' />
-			<field name='OrderID' required='N' />
-			<field name='ClOrdID' required='N' />
 			<component name='LinesOfTextGrp' required='Y' />
-			<field name='RawDataLength' required='N' />
-			<field name='RawData' required='N' />
 		</message>
 		<message name='NewOrderSingle' msgtype='D' msgcat='app'>
 			<field name='ClOrdID' required='Y' />
+			<field name='ClientId' required='N' />
 			<field name='SecondaryClOrdID' required='N' />
 			<field name='ClOrdLinkID' required='N' />
-			<component name='Parties' required='N' />
 			<field name='TradeOriginationDate' required='N' />
 			<field name='TradeDate' required='N' />
 			<field name='Account' required='N' />
@@ -342,7 +377,6 @@
 			<field name='BookingUnit' required='N' />
 			<field name='PreallocMethod' required='N' />
 			<field name='AllocID' required='N' />
-			<component name='PreAllocGrp' required='N' />
 			<field name='SettlType' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='CashMargin' required='N' />
@@ -352,24 +386,16 @@
 			<field name='MinQty' required='N' />
 			<field name='MaxFloor' required='N' />
 			<field name='ExDestination' required='N' />
-			<component name='TrdgSesGrp' required='N' />
 			<field name='ProcessCode' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='PrevClosePx' required='N' />
 			<field name='Side' required='Y' />
 			<field name='LocateReqd' required='N' />
 			<field name='TransactTime' required='Y' />
-			<component name='Stipulations' required='N' />
 			<field name='QtyType' required='N' />
-			<component name='OrderQtyData' required='N' />
 			<field name='OrdType' required='Y' />
 			<field name='PriceType' required='N' />
 			<field name='Price' required='N' />
 			<field name='StopPx' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='YieldData' required='N' />
 			<field name='Currency' required='N' />
 			<field name='ComplianceID' required='N' />
 			<field name='SolicitedFlag' required='N' />
@@ -380,7 +406,6 @@
 			<field name='ExpireDate' required='N' />
 			<field name='ExpireTime' required='N' />
 			<field name='GTBookingInst' required='N' />
-			<component name='CommissionData' required='N' />
 			<field name='OrderCapacity' required='N' />
 			<field name='OrderRestrictions' required='N' />
 			<field name='CustOrderCapacity' required='N' />
@@ -396,8 +421,6 @@
 			<field name='PositionEffect' required='N' />
 			<field name='CoveredOrUncovered' required='N' />
 			<field name='MaxShow' required='N' />
-			<component name='PegInstructions' required='N' />
-			<component name='DiscretionInstructions' required='N' />
 			<field name='TargetStrategy' required='N' />
 			<field name='TargetStrategyParameters' required='N' />
 			<field name='ParticipationRate' required='N' />
@@ -405,6 +428,68 @@
 			<field name='MoneyLaunderingStatus' required='N' />
 			<field name='RegistID' required='N' />
 			<field name='Designation' required='N' />
+			<field name='TargetStrategy' required='N' />
+
+			<field name='Memo' required='N' />
+			<field name='AggressorIndicator' required='N' />
+			<field name='offset' required='N' />
+			<field name='sniper-price' required='N' />
+			<field name='consider-cross-orders' required='N' />
+			<field name='consider-limit-price' required='N' />
+			<field name='would-price' required='N' />
+			<field name='would-qty' required='N' />
+			<field name='would-max-floor' required='N' />
+			<field name='unintentional-cross-min-size' required='N' />
+			<field name='auction-leftover' required='N' />
+			<field name='closing-auction-qty' required='N' />
+			<field name='auction-intraday' required='N' />
+			<field name='limit-by-volume-auction-qty' required='N' />
+			<field name='tilt' required='N' />
+			<field name='participation-tolerance' required='N' />
+			<field name='historical-on-close' required='N' />
+			<field name='reference-index' required='N' />
+			<field name='limit-type' required='N' />
+			<field name='relative-limit' required='N' />
+			<field name='mkt-qty' required='N' />
+			<field name='auction-market-protection-bps' required='N' />
+			<field name='close-auction-participation' required='N' />
+			<field name='max-close-auction-participation' required='N' />
+			<field name='dark-would-qty' required='N' />
+			<field name='dark-would-price' required='N' />
+			<field name='rules-disabled' required='N' />
+			<field name='max-cross-qty' required='N' />
+			<field name='max-sweep-qty' required='N' />
+			<field name='sweep-enabled' required='N' />
+			<field name='max-sweep-pct' required='N' />
+			<field name='type50030' required='N' />
+			<field name='dark-lit' required='N' />
+			<field name='aggression-margin' required='N' />
+			<field name='market-depth' required='N' />
+			<field name='spread' required='N' />
+			<field name='simultaneous-orders' required='N' />
+			<field name='validate-is-in-the-money' required='N' />
+			<field name='speed-up' required='N' />
+			<field name='compensate-loss' required='N' />
+			<field name='max-slice-qty' required='N' />
+			<field name='active-orders' required='N' />
+			<field name='factor' required='N' />
+			<field name='hedge-pct' required='N' />
+			<field name='hedge-ratio' required='N' />
+			<field name='type50116' required='N' />
+			<field name='target-participation' required='N' />
+			<component name='Parties' required='N' />
+			<component name='PreAllocGrp' required='N' />
+			<component name='TrdgSesGrp' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='OrderQtyData' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='YieldData' required='N' />
+			<component name='CommissionData' required='N' />
+			<component name='PegInstructions' required='N' />
+			<component name='DiscretionInstructions' required='N' />
 		</message>
 		<message name='NewOrderList' msgtype='E' msgcat='app'>
 			<field name='ListID' required='Y' />
@@ -429,8 +514,10 @@
 		</message>
 		<message name='OrderCancelRequest' msgtype='F' msgcat='app'>
 			<field name='OrigClOrdID' required='Y' />
-			<field name='OrderID' required='N' />
 			<field name='ClOrdID' required='Y' />
+			<field name='Side' required='Y' />
+			<field name='TransactTime' required='Y' />
+			<field name='OrderID' required='N' />
 			<field name='SecondaryClOrdID' required='N' />
 			<field name='ClOrdLinkID' required='N' />
 			<field name='ListID' required='N' />
@@ -438,22 +525,69 @@
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='N' />
-			<component name='Parties' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
-			<field name='Side' required='Y' />
-			<field name='TransactTime' required='Y' />
-			<component name='OrderQtyData' required='Y' />
 			<field name='ComplianceID' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+
+			<field name='Memo' required='N' />
+			<field name='AggressorIndicator' required='N' />
+			<field name='offset' required='N' />
+			<field name='sniper-price' required='N' />
+			<field name='consider-cross-orders' required='N' />
+			<field name='consider-limit-price' required='N' />
+			<field name='would-price' required='N' />
+			<field name='would-qty' required='N' />
+			<field name='would-max-floor' required='N' />
+			<field name='unintentional-cross-min-size' required='N' />
+			<field name='auction-leftover' required='N' />
+			<field name='closing-auction-qty' required='N' />
+			<field name='auction-intraday' required='N' />
+			<field name='limit-by-volume-auction-qty' required='N' />
+			<field name='tilt' required='N' />
+			<field name='participation-tolerance' required='N' />
+			<field name='historical-on-close' required='N' />
+			<field name='reference-index' required='N' />
+			<field name='limit-type' required='N' />
+			<field name='relative-limit' required='N' />
+			<field name='mkt-qty' required='N' />
+			<field name='auction-market-protection-bps' required='N' />
+			<field name='close-auction-participation' required='N' />
+			<field name='max-close-auction-participation' required='N' />
+			<field name='dark-would-qty' required='N' />
+			<field name='dark-would-price' required='N' />
+			<field name='rules-disabled' required='N' />
+			<field name='max-cross-qty' required='N' />
+			<field name='max-sweep-qty' required='N' />
+			<field name='sweep-enabled' required='N' />
+			<field name='max-sweep-pct' required='N' />
+			<field name='type50030' required='N' />
+			<field name='dark-lit' required='N' />
+			<field name='aggression-margin' required='N' />
+			<field name='market-depth' required='N' />
+			<field name='spread' required='N' />
+			<field name='simultaneous-orders' required='N' />
+			<field name='validate-is-in-the-money' required='N' />
+			<field name='speed-up' required='N' />
+			<field name='compensate-loss' required='N' />
+			<field name='max-slice-qty' required='N' />
+			<field name='active-orders' required='N' />
+			<field name='factor' required='N' />
+			<field name='hedge-pct' required='N' />
+			<field name='hedge-ratio' required='N' />
+			<field name='type50116' required='N' />
+			<field name='target-participation' required='N' />
+			
+			<component name='Parties' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='OrderQtyData' required='Y' />
 		</message>
 		<message name='OrderCancelReplaceRequest' msgtype='G' msgcat='app'>
+			<field name='DisplayQty' required='N' />
 			<field name='OrderID' required='N' />
 			<field name='ClientId' required='N' />
-			<component name='Parties' required='N' />
 			<field name='TradeOriginationDate' required='N' />
 			<field name='TradeDate' required='N' />
 			<field name='OrdStatus' required='N' />
@@ -470,7 +604,6 @@
 			<field name='BookingUnit' required='N' />
 			<field name='PreallocMethod' required='N' />
 			<field name='AllocID' required='N' />
-			<component name='PreAllocGrp' required='N' />
 			<field name='SettlType' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='CashMargin' required='N' />
@@ -480,22 +613,13 @@
 			<field name='MinQty' required='N' />
 			<field name='MaxFloor' required='N' />
 			<field name='ExDestination' required='N' />
-			<component name='TrdgSesGrp' required='N' />
-			<component name='Instrument' required='N' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='Side' required='N' />
 			<field name='TransactTime' required='N' />
 			<field name='QtyType' required='N' />
-			<component name='OrderQtyData' required='N' />
 			<field name='OrdType' required='N' />
 			<field name='PriceType' required='N' />
 			<field name='Price' required='N' />
 			<field name='StopPx' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='YieldData' required='N' />
-			<component name='PegInstructions' required='N' />
-			<component name='DiscretionInstructions' required='N' />
 			<field name='TargetStrategy' required='N' />
 			<field name='TargetStrategyParameters' required='N' />
 			<field name='ParticipationRate' required='N' />
@@ -507,7 +631,6 @@
 			<field name='ExpireDate' required='N' />
 			<field name='ExpireTime' required='N' />
 			<field name='GTBookingInst' required='N' />
-			<component name='CommissionData' required='N' />
 			<field name='OrderCapacity' required='N' />
 			<field name='OrderRestrictions' required='N' />
 			<field name='CustOrderCapacity' required='N' />
@@ -528,20 +651,81 @@
 			<field name='MoneyLaunderingStatus' required='N' />
 			<field name='RegistID' required='N' />
 			<field name='Designation' required='N' />
+			
+			<field name='Memo' required='N' />
+			<field name='AggressorIndicator' required='N' />
+			<field name='offset' required='N' />
+			<field name='sniper-price' required='N' />
+			<field name='consider-cross-orders' required='N' />
+			<field name='consider-limit-price' required='N' />
+			<field name='would-price' required='N' />
+			<field name='would-qty' required='N' />
+			<field name='would-max-floor' required='N' />
+			<field name='unintentional-cross-min-size' required='N' />
+			<field name='auction-leftover' required='N' />
+			<field name='closing-auction-qty' required='N' />
+			<field name='auction-intraday' required='N' />
+			<field name='limit-by-volume-auction-qty' required='N' />
+			<field name='tilt' required='N' />
+			<field name='participation-tolerance' required='N' />
+			<field name='historical-on-close' required='N' />
+			<field name='reference-index' required='N' />
+			<field name='limit-type' required='N' />
+			<field name='relative-limit' required='N' />
+			<field name='mkt-qty' required='N' />
+			<field name='auction-market-protection-bps' required='N' />
+			<field name='close-auction-participation' required='N' />
+			<field name='max-close-auction-participation' required='N' />
+			<field name='dark-would-qty' required='N' />
+			<field name='dark-would-price' required='N' />
+			<field name='rules-disabled' required='N' />
+			<field name='max-cross-qty' required='N' />
+			<field name='max-sweep-qty' required='N' />
+			<field name='sweep-enabled' required='N' />
+			<field name='max-sweep-pct' required='N' />
+			<field name='type50030' required='N' />
+			<field name='dark-lit' required='N' />
+			<field name='aggression-margin' required='N' />
+			<field name='market-depth' required='N' />
+			<field name='spread' required='N' />
+			<field name='simultaneous-orders' required='N' />
+			<field name='validate-is-in-the-money' required='N' />
+			<field name='speed-up' required='N' />
+			<field name='compensate-loss' required='N' />
+			<field name='max-slice-qty' required='N' />
+			<field name='active-orders' required='N' />
+			<field name='factor' required='N' />
+			<field name='hedge-pct' required='N' />
+			<field name='hedge-ratio' required='N' />
+			<field name='type50116' required='N' />
+			<field name='target-participation' required='N' />	
+			
+			<component name='Parties' required='N' />
+			<component name='PreAllocGrp' required='N' />
+			<component name='TrdgSesGrp' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='OrderQtyData' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='YieldData' required='N' />
+			<component name='PegInstructions' required='N' />
+			<component name='DiscretionInstructions' required='N' />
+			<component name='CommissionData' required='N' />
 		</message>
 		<message name='OrderStatusRequest' msgtype='H' msgcat='app'>
 			<field name='OrderID' required='N' />
 			<field name='ClOrdID' required='Y' />
 			<field name='SecondaryClOrdID' required='N' />
 			<field name='ClOrdLinkID' required='N' />
-			<component name='Parties' required='N' />
 			<field name='OrdStatusReqID' required='N' />
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
+			<field name='Side' required='Y' />
+			<component name='Parties' required='N' />
 			<component name='Instrument' required='Y' />
 			<component name='FinancingDetails' required='N' />
 			<component name='UndInstrmtGrp' required='N' />
-			<field name='Side' required='Y' />
 		</message>
 		<message name='AllocationInstruction' msgtype='J' msgcat='app'>
 			<field name='AllocID' required='Y' />
@@ -555,17 +739,10 @@
 			<field name='AllocLinkType' required='N' />
 			<field name='BookingRefID' required='N' />
 			<field name='AllocNoOrdersType' required='Y' />
-			<component name='OrdAllocGrp' required='N' />
-			<component name='ExecAllocGrp' required='N' />
 			<field name='PreviouslyReported' required='N' />
 			<field name='ReversalIndicator' required='N' />
 			<field name='MatchType' required='N' />
 			<field name='Side' required='Y' />
-			<component name='Instrument' required='Y' />
-			<component name='InstrumentExtension' required='N' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
 			<field name='Quantity' required='Y' />
 			<field name='QtyType' required='N' />
 			<field name='LastMkt' required='N' />
@@ -575,10 +752,8 @@
 			<field name='PriceType' required='N' />
 			<field name='AvgPx' required='Y' />
 			<field name='AvgParPx' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
 			<field name='Currency' required='N' />
 			<field name='AvgPxPrecision' required='N' />
-			<component name='Parties' required='N' />
 			<field name='TradeDate' required='Y' />
 			<field name='TransactTime' required='N' />
 			<field name='SettlType' required='N' />
@@ -602,11 +777,20 @@
 			<field name='StartCash' required='N' />
 			<field name='EndCash' required='N' />
 			<field name='LegalConfirm' required='N' />
-			<component name='Stipulations' required='N' />
-			<component name='YieldData' required='N' />
 			<field name='TotNoAllocs' required='N' />
 			<field name='LastFragment' required='N' />
 			<component name='AllocGrp' required='N' />
+			<component name='OrdAllocGrp' required='N' />
+			<component name='ExecAllocGrp' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='InstrumentExtension' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='Parties' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='YieldData' required='N' />
 		</message>
 		<message name='ListCancelRequest' msgtype='K' msgcat='app'>
 			<field name='ListID' required='Y' />
@@ -648,7 +832,6 @@
 		</message>
 		<message name='AllocationInstructionAck' msgtype='P' msgcat='app'>
 			<field name='AllocID' required='Y' />
-			<component name='Parties' required='N' />
 			<field name='SecondaryAllocID' required='N' />
 			<field name='TradeDate' required='N' />
 			<field name='TransactTime' required='Y' />
@@ -662,6 +845,7 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='N' />
 			<component name='AllocAckGrp' required='N' />
 		</message>
 		<message name='DontKnowTrade' msgtype='Q' msgcat='app'>
@@ -669,52 +853,44 @@
 			<field name='SecondaryOrderID' required='N' />
 			<field name='ExecID' required='Y' />
 			<field name='DKReason' required='Y' />
-			<component name='Instrument' required='Y' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
 			<field name='Side' required='Y' />
-			<component name='OrderQtyData' required='Y' />
 			<field name='LastQty' required='N' />
 			<field name='LastPx' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='OrderQtyData' required='Y' />
 		</message>
 		<message name='QuoteRequest' msgtype='R' msgcat='app'>
 			<field name='QuoteReqID' required='Y' />
 			<field name='RFQReqID' required='N' />
 			<field name='ClOrdID' required='N' />
 			<field name='OrderCapacity' required='N' />
-			<component name='QuotReqGrp' required='Y' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='QuotReqGrp' required='Y' />
 		</message>
 		<message name='Quote' msgtype='S' msgcat='app'>
 			<field name='QuoteReqID' required='N' />
 			<field name='QuoteID' required='Y' />
 			<field name='QuoteRespID' required='N' />
 			<field name='QuoteType' required='N' />
-			<component name='QuotQualGrp' required='N' />
 			<field name='QuoteResponseLevel' required='N' />
-			<component name='Parties' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='Side' required='N' />
-			<component name='OrderQtyData' required='N' />
 			<field name='SettlType' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='SettlDate2' required='N' />
 			<field name='OrderQty2' required='N' />
 			<field name='Currency' required='N' />
-			<component name='Stipulations' required='N' />
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='N' />
-			<component name='LegQuotGrp' required='N' />
 			<field name='BidPx' required='N' />
 			<field name='OfferPx' required='N' />
 			<field name='MktBidPx' required='N' />
@@ -745,11 +921,19 @@
 			<field name='ExDestination' required='N' />
 			<field name='OrderCapacity' required='N' />
 			<field name='PriceType' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='YieldData' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='QuotQualGrp' required='N' />
+			<component name='Parties' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='OrderQtyData' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='LegQuotGrp' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='YieldData' required='N' />
 		</message>
 		<message name='SettlementInstructions' msgtype='T' msgcat='app'>
 			<field name='SettlInstMsgID' required='Y' />
@@ -772,65 +956,65 @@
 			<field name='OpenCloseSettlFlag' required='N' />
 			<field name='Scope' required='N' />
 			<field name='MDImplicitDelete' required='N' />
+			<field name='ApplQueueAction' required='N' />
+			<field name='ApplQueueMax' required='N' />
 			<component name='MDReqGrp' required='Y' />
 			<component name='InstrmtMDReqGrp' required='Y' />
 			<component name='TrdgSesGrp' required='N' />
-			<field name='ApplQueueAction' required='N' />
-			<field name='ApplQueueMax' required='N' />
 		</message>
 		<message name='MarketDataSnapshotFullRefresh' msgtype='W' msgcat='app'>
 			<field name='MDReqID' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
 			<field name='FinancialStatus' required='N' />
 			<field name='CorporateAction' required='N' />
 			<field name='NetChgPrevDay' required='N' />
-			<component name='MDFullGrp' required='Y' />
 			<field name='ApplQueueDepth' required='N' />
 			<field name='ApplQueueResolution' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='MDFullGrp' required='Y' />
 		</message>
 		<message name='MarketDataIncrementalRefresh' msgtype='X' msgcat='app'>
 			<field name='MDReqID' required='N' />
-			<component name='MDIncGrp' required='Y' />
 			<field name='ApplQueueDepth' required='N' />
 			<field name='ApplQueueResolution' required='N' />
+			<component name='MDIncGrp' required='Y' />
 		</message>
 		<message name='MarketDataRequestReject' msgtype='Y' msgcat='app'>
 			<field name='MDReqID' required='Y' />
 			<field name='MDReqRejReason' required='N' />
-			<component name='MDRjctGrp' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='MDRjctGrp' required='N' />
 		</message>
 		<message name='QuoteCancel' msgtype='Z' msgcat='app'>
 			<field name='QuoteReqID' required='N' />
 			<field name='QuoteID' required='Y' />
 			<field name='QuoteCancelType' required='Y' />
 			<field name='QuoteResponseLevel' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
+			<component name='Parties' required='N' />
 			<component name='QuotCxlEntriesGrp' required='N' />
 		</message>
 		<message name='QuoteStatusRequest' msgtype='a' msgcat='app'>
 			<field name='QuoteStatusReqID' required='N' />
 			<field name='QuoteID' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
 			<field name='SubscriptionRequestType' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='Parties' required='N' />
 		</message>
 		<message name='MassQuoteAcknowledgement' msgtype='b' msgcat='app'>
 			<field name='QuoteReqID' required='N' />
@@ -839,66 +1023,62 @@
 			<field name='QuoteRejectReason' required='N' />
 			<field name='QuoteResponseLevel' required='N' />
 			<field name='QuoteType' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='N' />
 			<component name='QuotSetAckGrp' required='N' />
 		</message>
 		<message name='SecurityDefinitionRequest' msgtype='c' msgcat='app'>
 			<field name='SecurityReqID' required='Y' />
 			<field name='SecurityRequestType' required='Y' />
-			<component name='Instrument' required='N' />
-			<component name='InstrumentExtension' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='Currency' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
 			<field name='ExpirationCycle' required='N' />
 			<field name='SubscriptionRequestType' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='InstrumentExtension' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
 		</message>
 		<message name='SecurityDefinition' msgtype='d' msgcat='app'>
 			<field name='SecurityReqID' required='Y' />
 			<field name='SecurityResponseID' required='Y' />
 			<field name='SecurityResponseType' required='Y' />
-			<component name='Instrument' required='N' />
-			<component name='InstrumentExtension' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='Currency' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
 			<field name='ExpirationCycle' required='N' />
 			<field name='RoundLot' required='N' />
 			<field name='MinTradeVol' required='N' />
-		</message>
-		<message name='SecurityStatusRequest' msgtype='e' msgcat='app'>
-			<field name='SecurityStatusReqID' required='Y' />
-			<component name='Instrument' required='Y' />
+			<component name='Instrument' required='N' />
 			<component name='InstrumentExtension' required='N' />
 			<component name='UndInstrmtGrp' required='N' />
 			<component name='InstrmtLegGrp' required='N' />
+		</message>
+		<message name='SecurityStatusRequest' msgtype='e' msgcat='app'>
+			<field name='SecurityStatusReqID' required='Y' />
 			<field name='Currency' required='N' />
 			<field name='SubscriptionRequestType' required='Y' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
-		</message>
-		<message name='SecurityStatus' msgtype='f' msgcat='app'>
-			<field name='SecurityStatusReqID' required='N' />
 			<component name='Instrument' required='Y' />
 			<component name='InstrumentExtension' required='N' />
 			<component name='UndInstrmtGrp' required='N' />
 			<component name='InstrmtLegGrp' required='N' />
+		</message>
+		<message name='SecurityStatus' msgtype='f' msgcat='app'>
+			<field name='SecurityStatusReqID' required='N' />
 			<field name='Currency' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
@@ -919,6 +1099,10 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='InstrumentExtension' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
 		</message>
 		<message name='TradingSessionStatusRequest' msgtype='g' msgcat='app'>
 			<field name='TradSesReqID' required='Y' />
@@ -952,12 +1136,12 @@
 			<field name='QuoteID' required='Y' />
 			<field name='QuoteType' required='N' />
 			<field name='QuoteResponseLevel' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='N' />
 			<field name='DefBidSize' required='N' />
 			<field name='DefOfferSize' required='N' />
+			<component name='Parties' required='N' />
 			<component name='QuotSetGrp' required='Y' />
 		</message>
 		<message name='BusinessMessageReject' msgtype='j' msgcat='app'>
@@ -968,6 +1152,7 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<field name='ExecTransType' required='N' />
 		</message>
 		<message name='BidRequest' msgtype='k' msgcat='app'>
 			<field name='BidID' required='N' />
@@ -980,8 +1165,6 @@
 			<field name='Currency' required='N' />
 			<field name='SideValue1' required='N' />
 			<field name='SideValue2' required='N' />
-			<component name='BidDescReqGrp' required='N' />
-			<component name='BidCompReqGrp' required='N' />
 			<field name='LiquidityIndType' required='N' />
 			<field name='WtAverageLiquidity' required='N' />
 			<field name='ExchangeForPhysical' required='N' />
@@ -999,6 +1182,8 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='BidDescReqGrp' required='N' />
+			<component name='BidCompReqGrp' required='N' />
 		</message>
 		<message name='BidResponse' msgtype='l' msgcat='app'>
 			<field name='BidID' required='N' />
@@ -1017,12 +1202,12 @@
 			<field name='RegistTransType' required='Y' />
 			<field name='RegistRefID' required='Y' />
 			<field name='ClOrdID' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
 			<field name='RegistAcctType' required='N' />
 			<field name='TaxAdvantageType' required='N' />
 			<field name='OwnershipType' required='N' />
+			<component name='Parties' required='N' />
 			<component name='RgstDtlsGrp' required='N' />
 			<component name='RgstDistInstGrp' required='N' />
 		</message>
@@ -1031,12 +1216,12 @@
 			<field name='RegistTransType' required='Y' />
 			<field name='RegistRefID' required='Y' />
 			<field name='ClOrdID' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
 			<field name='RegistStatus' required='Y' />
 			<field name='RegistRejReasonCode' required='N' />
 			<field name='RegistRejReasonText' required='N' />
+			<component name='Parties' required='N' />
 		</message>
 		<message name='OrderMassCancelRequest' msgtype='q' msgcat='app'>
 			<field name='ClOrdID' required='Y' />
@@ -1044,13 +1229,13 @@
 			<field name='MassCancelRequestType' required='Y' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
-			<component name='Instrument' required='N' />
-			<component name='UnderlyingInstrument' required='N' />
 			<field name='Side' required='N' />
 			<field name='TransactTime' required='Y' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='UnderlyingInstrument' required='N' />
 		</message>
 		<message name='OrderMassCancelReport' msgtype='r' msgcat='app'>
 			<field name='ClOrdID' required='N' />
@@ -1061,25 +1246,21 @@
 			<field name='MassCancelResponse' required='Y' />
 			<field name='MassCancelRejectReason' required='N' />
 			<field name='TotalAffectedOrders' required='N' />
-			<component name='AffectedOrdGrp' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
-			<component name='Instrument' required='N' />
-			<component name='UnderlyingInstrument' required='N' />
 			<field name='Side' required='N' />
 			<field name='TransactTime' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='AffectedOrdGrp' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='UnderlyingInstrument' required='N' />
 		</message>
 		<message name='NewOrderCross' msgtype='s' msgcat='app'>
 			<field name='CrossID' required='Y' />
 			<field name='CrossType' required='Y' />
 			<field name='CrossPrioritization' required='Y' />
-			<component name='SideCrossOrdModGrp' required='Y' />
-			<component name='Instrument' required='Y' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
 			<field name='SettlType' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='  [HandlInst](#handlinst)  ' required='N' />
@@ -1087,18 +1268,14 @@
 			<field name='MinQty' required='N' />
 			<field name='MaxFloor' required='N' />
 			<field name='ExDestination' required='N' />
-			<component name='TrdgSesGrp' required='N' />
 			<field name='ProcessCode' required='N' />
 			<field name='PrevClosePx' required='N' />
 			<field name='LocateReqd' required='N' />
 			<field name='TransactTime' required='Y' />
-			<component name='Stipulations' required='N' />
 			<field name='OrdType' required='Y' />
 			<field name='PriceType' required='N' />
 			<field name='Price' required='N' />
 			<field name='StopPx' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='YieldData' required='N' />
 			<field name='Currency' required='N' />
 			<field name='ComplianceID' required='N' />
 			<field name='IOIID' required='N' />
@@ -1109,8 +1286,6 @@
 			<field name='ExpireTime' required='N' />
 			<field name='GTBookingInst' required='N' />
 			<field name='MaxShow' required='N' />
-			<component name='PegInstructions' required='N' />
-			<component name='DiscretionInstructions' required='N' />
 			<field name='TargetStrategy' required='N' />
 			<field name='TargetStrategyParameters' required='N' />
 			<field name='ParticipationRate' required='N' />
@@ -1118,6 +1293,16 @@
 			<field name='MoneyLaunderingStatus' required='N' />
 			<field name='RegistID' required='N' />
 			<field name='Designation' required='N' />
+			<component name='SideCrossOrdModGrp' required='Y' />
+			<component name='Instrument' required='Y' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='TrdgSesGrp' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='YieldData' required='N' />
+			<component name='PegInstructions' required='N' />
+			<component name='DiscretionInstructions' required='N' />
 		</message>
 		<message name='CrossOrderCancelReplaceRequest' msgtype='t' msgcat='app'>
 			<field name='OrderID' required='N' />
@@ -1125,10 +1310,6 @@
 			<field name='OrigCrossID' required='Y' />
 			<field name='CrossType' required='Y' />
 			<field name='CrossPrioritization' required='Y' />
-			<component name='SideCrossOrdModGrp' required='Y' />
-			<component name='Instrument' required='Y' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
 			<field name='SettlType' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='  [HandlInst](#handlinst)  ' required='N' />
@@ -1136,18 +1317,14 @@
 			<field name='MinQty' required='N' />
 			<field name='MaxFloor' required='N' />
 			<field name='ExDestination' required='N' />
-			<component name='TrdgSesGrp' required='N' />
 			<field name='ProcessCode' required='N' />
 			<field name='PrevClosePx' required='N' />
 			<field name='LocateReqd' required='N' />
 			<field name='TransactTime' required='Y' />
-			<component name='Stipulations' required='N' />
 			<field name='OrdType' required='Y' />
 			<field name='PriceType' required='N' />
 			<field name='Price' required='N' />
 			<field name='StopPx' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='YieldData' required='N' />
 			<field name='Currency' required='N' />
 			<field name='ComplianceID' required='N' />
 			<field name='IOIID' required='N' />
@@ -1158,8 +1335,6 @@
 			<field name='ExpireTime' required='N' />
 			<field name='GTBookingInst' required='N' />
 			<field name='MaxShow' required='N' />
-			<component name='PegInstructions' required='N' />
-			<component name='DiscretionInstructions' required='N' />
 			<field name='TargetStrategy' required='N' />
 			<field name='TargetStrategyParameters' required='N' />
 			<field name='ParticipationRate' required='N' />
@@ -1167,6 +1342,16 @@
 			<field name='MoneyLaunderingStatus' required='N' />
 			<field name='RegistID' required='N' />
 			<field name='Designation' required='N' />
+			<component name='SideCrossOrdModGrp' required='Y' />
+			<component name='Instrument' required='Y' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='TrdgSesGrp' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='YieldData' required='N' />
+			<component name='PegInstructions' required='N' />
+			<component name='DiscretionInstructions' required='N' />
 		</message>
 		<message name='CrossOrderCancelRequest' msgtype='u' msgcat='app'>
 			<field name='OrderID' required='N' />
@@ -1174,11 +1359,11 @@
 			<field name='OrigCrossID' required='Y' />
 			<field name='CrossType' required='Y' />
 			<field name='CrossPrioritization' required='Y' />
+			<field name='TransactTime' required='Y' />
 			<component name='SideCrossOrdCxlGrp' required='Y' />
 			<component name='Instrument' required='Y' />
 			<component name='UndInstrmtGrp' required='N' />
 			<component name='InstrmtLegGrp' required='N' />
-			<field name='TransactTime' required='Y' />
 		</message>
 		<message name='SecurityTypeRequest' msgtype='v' msgcat='app'>
 			<field name='SecurityReqID' required='Y' />
@@ -1197,22 +1382,17 @@
 			<field name='SecurityResponseType' required='Y' />
 			<field name='TotNoSecurityTypes' required='N' />
 			<field name='LastFragment' required='N' />
-			<component name='SecTypesGrp' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
 			<field name='SubscriptionRequestType' required='N' />
+			<component name='SecTypesGrp' required='N' />
 		</message>
 		<message name='SecurityListRequest' msgtype='x' msgcat='app'>
 			<field name='SecurityReqID' required='Y' />
 			<field name='SecurityListRequestType' required='Y' />
-			<component name='Instrument' required='N' />
-			<component name='InstrumentExtension' required='N' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
 			<field name='Currency' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
@@ -1220,6 +1400,11 @@
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
 			<field name='SubscriptionRequestType' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='InstrumentExtension' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
 		</message>
 		<message name='SecurityList' msgtype='y' msgcat='app'>
 			<field name='SecurityReqID' required='Y' />
@@ -1232,7 +1417,6 @@
 		<message name='DerivativeSecurityListRequest' msgtype='z' msgcat='app'>
 			<field name='SecurityReqID' required='Y' />
 			<field name='SecurityListRequestType' required='Y' />
-			<component name='UnderlyingInstrument' required='N' />
 			<field name='SecuritySubType' required='N' />
 			<field name='Currency' required='N' />
 			<field name='Text' required='N' />
@@ -1241,21 +1425,21 @@
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
 			<field name='SubscriptionRequestType' required='N' />
+			<component name='UnderlyingInstrument' required='N' />
 		</message>
 		<message name='DerivativeSecurityList' msgtype='AA' msgcat='app'>
 			<field name='SecurityReqID' required='Y' />
 			<field name='SecurityResponseID' required='Y' />
 			<field name='SecurityRequestResult' required='Y' />
-			<component name='UnderlyingInstrument' required='N' />
 			<field name='TotNoRelatedSym' required='N' />
 			<field name='LastFragment' required='N' />
+			<component name='UnderlyingInstrument' required='N' />
 			<component name='RelSymDerivSecGrp' required='N' />
 		</message>
 		<message name='NewOrderMultileg' msgtype='AB' msgcat='app'>
 			<field name='ClOrdID' required='Y' />
 			<field name='SecondaryClOrdID' required='N' />
 			<field name='ClOrdLinkID' required='N' />
-			<component name='Parties' required='N' />
 			<field name='TradeOriginationDate' required='N' />
 			<field name='TradeDate' required='N' />
 			<field name='Account' required='N' />
@@ -1265,7 +1449,6 @@
 			<field name='BookingUnit' required='N' />
 			<field name='PreallocMethod' required='N' />
 			<field name='AllocID' required='N' />
-			<component name='PreAllocMlegGrp' required='N' />
 			<field name='SettlType' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='CashMargin' required='N' />
@@ -1275,17 +1458,12 @@
 			<field name='MinQty' required='N' />
 			<field name='MaxFloor' required='N' />
 			<field name='ExDestination' required='N' />
-			<component name='TrdgSesGrp' required='N' />
 			<field name='ProcessCode' required='N' />
 			<field name='Side' required='Y' />
-			<component name='Instrument' required='Y' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='PrevClosePx' required='N' />
-			<component name='LegOrdGrp' required='Y' />
 			<field name='LocateReqd' required='N' />
 			<field name='TransactTime' required='Y' />
 			<field name='QtyType' required='N' />
-			<component name='OrderQtyData' required='Y' />
 			<field name='OrdType' required='Y' />
 			<field name='PriceType' required='N' />
 			<field name='Price' required='N' />
@@ -1300,7 +1478,6 @@
 			<field name='ExpireDate' required='N' />
 			<field name='ExpireTime' required='N' />
 			<field name='GTBookingInst' required='N' />
-			<component name='CommissionData' required='N' />
 			<field name='OrderCapacity' required='N' />
 			<field name='OrderRestrictions' required='N' />
 			<field name='CustOrderCapacity' required='N' />
@@ -1313,8 +1490,6 @@
 			<field name='PositionEffect' required='N' />
 			<field name='CoveredOrUncovered' required='N' />
 			<field name='MaxShow' required='N' />
-			<component name='PegInstructions' required='N' />
-			<component name='DiscretionInstructions' required='N' />
 			<field name='TargetStrategy' required='N' />
 			<field name='TargetStrategyParameters' required='N' />
 			<field name='ParticipationRate' required='N' />
@@ -1323,6 +1498,16 @@
 			<field name='RegistID' required='N' />
 			<field name='Designation' required='N' />
 			<field name='MultiLegRptTypeReq' required='N' />
+			<component name='PreAllocMlegGrp' required='N' />
+			<component name='Parties' required='N' />
+			<component name='TrdgSesGrp' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='LegOrdGrp' required='Y' />
+			<component name='OrderQtyData' required='Y' />
+			<component name='CommissionData' required='N' />
+			<component name='PegInstructions' required='N' />
+			<component name='DiscretionInstructions' required='N' />
 		</message>
 		<message name='MultilegOrderCancelReplace' msgtype='AC' msgcat='app'>
 			<field name='OrderID' required='N' />
@@ -1331,7 +1516,6 @@
 			<field name='SecondaryClOrdID' required='N' />
 			<field name='ClOrdLinkID' required='N' />
 			<field name='OrigOrdModTime' required='N' />
-			<component name='Parties' required='N' />
 			<field name='TradeOriginationDate' required='N' />
 			<field name='TradeDate' required='N' />
 			<field name='Account' required='N' />
@@ -1341,7 +1525,6 @@
 			<field name='BookingUnit' required='N' />
 			<field name='PreallocMethod' required='N' />
 			<field name='AllocID' required='N' />
-			<component name='PreAllocMlegGrp' required='N' />
 			<field name='SettlType' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='CashMargin' required='N' />
@@ -1351,17 +1534,12 @@
 			<field name='MinQty' required='N' />
 			<field name='MaxFloor' required='N' />
 			<field name='ExDestination' required='N' />
-			<component name='TrdgSesGrp' required='N' />
 			<field name='ProcessCode' required='N' />
 			<field name='Side' required='Y' />
-			<component name='Instrument' required='Y' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='PrevClosePx' required='N' />
-			<component name='LegOrdGrp' required='Y' />
 			<field name='LocateReqd' required='N' />
 			<field name='TransactTime' required='Y' />
 			<field name='QtyType' required='N' />
-			<component name='OrderQtyData' required='Y' />
 			<field name='OrdType' required='Y' />
 			<field name='PriceType' required='N' />
 			<field name='Price' required='N' />
@@ -1376,7 +1554,6 @@
 			<field name='ExpireDate' required='N' />
 			<field name='ExpireTime' required='N' />
 			<field name='GTBookingInst' required='N' />
-			<component name='CommissionData' required='N' />
 			<field name='OrderCapacity' required='N' />
 			<field name='OrderRestrictions' required='N' />
 			<field name='CustOrderCapacity' required='N' />
@@ -1389,8 +1566,6 @@
 			<field name='PositionEffect' required='N' />
 			<field name='CoveredOrUncovered' required='N' />
 			<field name='MaxShow' required='N' />
-			<component name='PegInstructions' required='N' />
-			<component name='DiscretionInstructions' required='N' />
 			<field name='TargetStrategy' required='N' />
 			<field name='TargetStrategyParameters' required='N' />
 			<field name='ParticipationRate' required='N' />
@@ -1399,6 +1574,16 @@
 			<field name='RegistID' required='N' />
 			<field name='Designation' required='N' />
 			<field name='MultiLegRptTypeReq' required='N' />
+			<component name='Parties' required='N' />
+			<component name='PreAllocMlegGrp' required='N' />
+			<component name='TrdgSesGrp' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='LegOrdGrp' required='Y' />
+			<component name='OrderQtyData' required='Y' />
+			<component name='CommissionData' required='N' />
+			<component name='PegInstructions' required='N' />
+			<component name='DiscretionInstructions' required='N' />
 		</message>
 		<message name='TradeCaptureReportRequest' msgtype='AD' msgcat='app'>
 			<field name='TradeRequestID' required='Y' />
@@ -1417,13 +1602,6 @@
 			<field name='SecondaryTrdType' required='N' />
 			<field name='TradeLinkID' required='N' />
 			<field name='TrdMatchID' required='N' />
-			<component name='Parties' required='N' />
-			<component name='Instrument' required='N' />
-			<component name='InstrumentExtension' required='N' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='TrdCapDtGrp' required='N' />
 			<field name='ClearingBusinessDate' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
@@ -1437,6 +1615,13 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='InstrumentExtension' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='TrdCapDtGrp' required='N' />
 		</message>
 		<message name='TradeCaptureReport' msgtype='AE' msgcat='app'>
 			<field name='TradeReportID' required='Y' />
@@ -1463,12 +1648,7 @@
 			<field name='ExecRestatementReason' required='N' />
 			<field name='PreviouslyReported' required='Y' />
 			<field name='PriceType' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='FinancingDetails' required='N' />
-			<component name='OrderQtyData' required='N' />
 			<field name='QtyType' required='N' />
-			<component name='YieldData' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='UnderlyingTradingSessionID' required='N' />
 			<field name='UnderlyingTradingSessionSubID' required='N' />
 			<field name='LastQty' required='Y' />
@@ -1480,48 +1660,53 @@
 			<field name='TradeDate' required='Y' />
 			<field name='ClearingBusinessDate' required='N' />
 			<field name='AvgPx' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
 			<field name='AvgPxIndicator' required='N' />
-			<component name='PositionAmountData' required='N' />
 			<field name='MultiLegReportingType' required='N' />
 			<field name='TradeLegRefID' required='N' />
-			<component name='TrdInstrmtLegGrp' required='N' />
 			<field name='TransactTime' required='Y' />
-			<component name='TrdRegTimestamps' required='N' />
 			<field name='SettlType' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='MatchStatus' required='N' />
 			<field name='MatchType' required='N' />
-			<component name='TrdCapRptSideGrp' required='Y' />
 			<field name='CopyMsgIndicator' required='N' />
 			<field name='PublishTrdIndicator' required='N' />
 			<field name='ShortSaleReason' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='FinancingDetails' required='N' />
+			<component name='OrderQtyData' required='N' />
+			<component name='YieldData' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='PositionAmountData' required='N' />
+			<component name='TrdInstrmtLegGrp' required='N' />
+			<component name='TrdRegTimestamps' required='N' />
+			<component name='TrdCapRptSideGrp' required='Y' />
 		</message>
 		<message name='OrderMassStatusRequest' msgtype='AF' msgcat='app'>
 			<field name='MassStatusReqID' required='Y' />
 			<field name='MassStatusReqType' required='Y' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
+			<field name='Side' required='N' />
+			<component name='Parties' required='N' />
 			<component name='Instrument' required='N' />
 			<component name='UnderlyingInstrument' required='N' />
-			<field name='Side' required='N' />
 		</message>
 		<message name='QuoteRequestReject' msgtype='AG' msgcat='app'>
 			<field name='QuoteReqID' required='Y' />
 			<field name='RFQReqID' required='N' />
 			<field name='QuoteRequestRejectReason' required='Y' />
-			<component name='QuotReqRjctGrp' required='Y' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='QuotReqRjctGrp' required='Y' />
 		</message>
 		<message name='RFQRequest' msgtype='AH' msgcat='app'>
 			<field name='RFQReqID' required='Y' />
-			<component name='RFQReqGrp' required='Y' />
 			<field name='SubscriptionRequestType' required='N' />
+			<component name='RFQReqGrp' required='Y' />
 		</message>
 		<message name='QuoteStatusReport' msgtype='AI' msgcat='app'>
 			<field name='QuoteStatusReqID' required='N' />
@@ -1529,30 +1714,20 @@
 			<field name='QuoteID' required='Y' />
 			<field name='QuoteRespID' required='N' />
 			<field name='QuoteType' required='N' />
-			<component name='Parties' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='Side' required='N' />
-			<component name='OrderQtyData' required='N' />
 			<field name='SettlType' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='SettlDate2' required='N' />
 			<field name='OrderQty2' required='N' />
 			<field name='Currency' required='N' />
-			<component name='Stipulations' required='N' />
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
-			<field name='AccountType' required='N' />
-			<component name='LegQuotStatGrp' required='N' />
-			<component name='QuotQualGrp' required='N' />
+			<field name='AccountType' required='N' />	
 			<field name='ExpireTime' required='N' />
 			<field name='Price' required='N' />
 			<field name='PriceType' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='YieldData' required='N' />
 			<field name='BidPx' required='N' />
 			<field name='OfferPx' required='N' />
 			<field name='MktBidPx' required='N' />
@@ -1585,6 +1760,16 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='OrderQtyData' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='LegQuotStatGrp' required='N' />
+			<component name='QuotQualGrp' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='YieldData' required='N' />
 		</message>
 		<message name='QuoteResponse' msgtype='AJ' msgcat='app'>
 			<field name='QuoteRespID' required='Y' />
@@ -1594,25 +1779,17 @@
 			<field name='OrderCapacity' required='N' />
 			<field name='IOIID' required='N' />
 			<field name='QuoteType' required='N' />
-			<component name='QuotQualGrp' required='N' />
-			<component name='Parties' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='Side' required='N' />
-			<component name='OrderQtyData' required='N' />
 			<field name='SettlType' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='SettlDate2' required='N' />
 			<field name='OrderQty2' required='N' />
 			<field name='Currency' required='N' />
-			<component name='Stipulations' required='N' />
 			<field name='Account' required='N' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='N' />
-			<component name='LegQuotGrp' required='N' />
 			<field name='BidPx' required='N' />
 			<field name='OfferPx' required='N' />
 			<field name='MktBidPx' required='N' />
@@ -1646,6 +1823,14 @@
 			<field name='EncodedText' required='N' />
 			<field name='Price' required='N' />
 			<field name='PriceType' required='N' />
+			<component name='QuotQualGrp' required='N' />
+			<component name='Parties' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='OrderQtyData' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='LegQuotGrp' required='N' />
 			<component name='SpreadOrBenchmarkCurveData' required='N' />
 			<component name='YieldData' required='N' />
 		</message>
@@ -1658,26 +1843,16 @@
 			<field name='CopyMsgIndicator' required='N' />
 			<field name='LegalConfirm' required='N' />
 			<field name='ConfirmStatus' required='Y' />
-			<component name='Parties' required='N' />
-			<component name='OrdAllocGrp' required='N' />
 			<field name='AllocID' required='N' />
 			<field name='SecondaryAllocID' required='N' />
 			<field name='IndividualAllocID' required='N' />
 			<field name='TransactTime' required='Y' />
 			<field name='TradeDate' required='Y' />
-			<component name='TrdRegTimestamps' required='N' />
-			<component name='Instrument' required='Y' />
-			<component name='InstrumentExtension' required='N' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='Y' />
-			<component name='InstrmtLegGrp' required='Y' />
-			<component name='YieldData' required='N' />
 			<field name='AllocQty' required='Y' />
 			<field name='QtyType' required='N' />
 			<field name='Side' required='Y' />
 			<field name='Currency' required='N' />
 			<field name='LastMkt' required='N' />
-			<component name='CpctyConfGrp' required='Y' />
 			<field name='AllocAccount' required='Y' />
 			<field name='AllocAcctIDSource' required='N' />
 			<field name='AllocAccountType' required='N' />
@@ -1685,7 +1860,6 @@
 			<field name='AvgPxPrecision' required='N' />
 			<field name='PriceType' required='N' />
 			<field name='AvgParPx' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
 			<field name='ReportedPx' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
@@ -1710,9 +1884,20 @@
 			<field name='SettlCurrFxRateCalc' required='N' />
 			<field name='SettlType' required='N' />
 			<field name='SettlDate' required='N' />
+			<field name='SharedCommission' required='N' />
+			<component name='Parties' required='N' />
+			<component name='OrdAllocGrp' required='N' />
+			<component name='TrdRegTimestamps' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='InstrumentExtension' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='Y' />
+			<component name='InstrmtLegGrp' required='Y' />
+			<component name='YieldData' required='N' />
+			<component name='CpctyConfGrp' required='Y' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
 			<component name='SettlInstructionsData' required='N' />
 			<component name='CommissionData' required='N' />
-			<field name='SharedCommission' required='N' />
 			<component name='Stipulations' required='N' />
 			<component name='MiscFeesGrp' required='N' />
 		</message>
@@ -1725,17 +1910,11 @@
 			<field name='ClearingBusinessDate' required='Y' />
 			<field name='SettlSessID' required='N' />
 			<field name='SettlSessSubID' required='N' />
-			<component name='Parties' required='Y' />
 			<field name='Account' required='Y' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='Y' />
-			<component name='Instrument' required='Y' />
 			<field name='Currency' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='TrdgSesGrp' required='N' />
 			<field name='TransactTime' required='Y' />
-			<component name='PositionQty' required='Y' />
 			<field name='AdjustmentType' required='N' />
 			<field name='ContraryInstructionIndicator' required='N' />
 			<field name='PriorSpreadIndicator' required='N' />
@@ -1743,6 +1922,12 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='Y' />
+			<component name='Instrument' required='Y' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='TrdgSesGrp' required='N' />
+			<component name='PositionQty' required='Y' />
 		</message>
 		<message name='PositionMaintenanceReport' msgtype='AM' msgcat='app'>
 			<field name='PosMaintRptID' required='Y' />
@@ -1755,47 +1940,47 @@
 			<field name='ClearingBusinessDate' required='Y' />
 			<field name='SettlSessID' required='N' />
 			<field name='SettlSessSubID' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='Y' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='Y' />
-			<component name='Instrument' required='Y' />
 			<field name='Currency' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='TrdgSesGrp' required='N' />
 			<field name='TransactTime' required='Y' />
-			<component name='PositionQty' required='Y' />
-			<component name='PositionAmountData' required='Y' />
 			<field name='AdjustmentType' required='N' />
 			<field name='ThresholdAmount' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='TrdgSesGrp' required='N' />
+			<component name='PositionQty' required='Y' />
+			<component name='PositionAmountData' required='Y' />
 		</message>
 		<message name='RequestForPositions' msgtype='AN' msgcat='app'>
 			<field name='PosReqID' required='Y' />
 			<field name='PosReqType' required='Y' />
 			<field name='MatchStatus' required='N' />
 			<field name='SubscriptionRequestType' required='N' />
-			<component name='Parties' required='Y' />
 			<field name='Account' required='Y' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='Y' />
-			<component name='Instrument' required='N' />
 			<field name='Currency' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='ClearingBusinessDate' required='Y' />
 			<field name='SettlSessID' required='N' />
 			<field name='SettlSessSubID' required='N' />
-			<component name='TrdgSesGrp' required='N' />
 			<field name='TransactTime' required='Y' />
 			<field name='ResponseTransportType' required='N' />
 			<field name='ResponseDestination' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='Y' />
+			<component name='Instrument' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='TrdgSesGrp' required='N' />
 		</message>
 		<message name='RequestForPositionsAck' msgtype='AO' msgcat='app'>
 			<field name='PosMaintRptID' required='Y' />
@@ -1804,19 +1989,19 @@
 			<field name='UnsolicitedIndicator' required='N' />
 			<field name='PosReqResult' required='Y' />
 			<field name='PosReqStatus' required='Y' />
-			<component name='Parties' required='Y' />
 			<field name='Account' required='Y' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='Y' />
-			<component name='Instrument' required='N' />
 			<field name='Currency' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='ResponseTransportType' required='N' />
 			<field name='ResponseDestination' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='Y' />
+			<component name='Instrument' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
 		</message>
 		<message name='PositionReport' msgtype='AP' msgcat='app'>
 			<field name='PosMaintRptID' required='Y' />
@@ -1829,24 +2014,24 @@
 			<field name='ClearingBusinessDate' required='Y' />
 			<field name='SettlSessID' required='N' />
 			<field name='SettlSessSubID' required='N' />
-			<component name='Parties' required='Y' />
 			<field name='Account' required='Y' />
 			<field name='AcctIDSource' required='N' />
 			<field name='AccountType' required='Y' />
-			<component name='Instrument' required='N' />
 			<field name='Currency' required='N' />
 			<field name='SettlPrice' required='Y' />
 			<field name='SettlPriceType' required='Y' />
 			<field name='PriorSettlPrice' required='Y' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='PosUndInstrmtGrp' required='N' />
-			<component name='PositionQty' required='Y' />
-			<component name='PositionAmountData' required='Y' />
 			<field name='RegistStatus' required='N' />
 			<field name='DeliveryDate' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='Y' />
+			<component name='Instrument' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='PosUndInstrmtGrp' required='N' />
+			<component name='PositionQty' required='Y' />
+			<component name='PositionAmountData' required='Y' />
 		</message>
 		<message name='TradeCaptureReportRequestAck' msgtype='AQ' msgcat='app'>
 			<field name='TradeRequestID' required='Y' />
@@ -1855,15 +2040,15 @@
 			<field name='TotNumTradeReports' required='N' />
 			<field name='TradeRequestResult' required='Y' />
 			<field name='TradeRequestStatus' required='Y' />
-			<component name='Instrument' required='Y' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
 			<field name='MultiLegReportingType' required='N' />
 			<field name='ResponseTransportType' required='N' />
 			<field name='ResponseDestination' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
 		</message>
 		<message name='TradeCaptureReportAck' msgtype='AR' msgcat='app'>
 			<field name='TradeReportID' required='Y' />
@@ -1884,15 +2069,12 @@
 			<field name='TrdMatchID' required='N' />
 			<field name='ExecID' required='N' />
 			<field name='SecondaryExecID' required='N' />
-			<component name='Instrument' required='Y' />
 			<field name='TransactTime' required='N' />
-			<component name='TrdRegTimestamps' required='N' />
 			<field name='ResponseTransportType' required='N' />
 			<field name='ResponseDestination' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
-			<component name='TrdInstrmtLegGrp' required='N' />
 			<field name='ClearingFeeIndicator' required='N' />
 			<field name='OrderCapacity' required='N' />
 			<field name='OrderRestrictions' required='N' />
@@ -1902,6 +2084,9 @@
 			<field name='AccountType' required='N' />
 			<field name='PositionEffect' required='N' />
 			<field name='PreallocMethod' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='TrdRegTimestamps' required='N' />
+			<component name='TrdInstrmtLegGrp' required='N' />
 			<component name='TrdAllocGrp' required='N' />
 		</message>
 		<message name='AllocationReport' msgtype='AS' msgcat='app'>
@@ -1920,17 +2105,10 @@
 			<field name='AllocLinkType' required='N' />
 			<field name='BookingRefID' required='N' />
 			<field name='AllocNoOrdersType' required='Y' />
-			<component name='OrdAllocGrp' required='N' />
-			<component name='ExecAllocGrp' required='N' />
 			<field name='PreviouslyReported' required='N' />
 			<field name='ReversalIndicator' required='N' />
 			<field name='MatchType' required='N' />
 			<field name='Side' required='Y' />
-			<component name='Instrument' required='Y' />
-			<component name='InstrumentExtension' required='N' />
-			<component name='FinancingDetails' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
 			<field name='Quantity' required='Y' />
 			<field name='QtyType' required='N' />
 			<field name='LastMkt' required='N' />
@@ -1940,10 +2118,8 @@
 			<field name='PriceType' required='N' />
 			<field name='AvgPx' required='Y' />
 			<field name='AvgParPx' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
 			<field name='Currency' required='N' />
 			<field name='AvgPxPrecision' required='N' />
-			<component name='Parties' required='N' />
 			<field name='TradeDate' required='Y' />
 			<field name='TransactTime' required='N' />
 			<field name='SettlType' required='N' />
@@ -1967,16 +2143,24 @@
 			<field name='StartCash' required='N' />
 			<field name='EndCash' required='N' />
 			<field name='LegalConfirm' required='N' />
-			<component name='Stipulations' required='N' />
-			<component name='YieldData' required='N' />
 			<field name='TotNoAllocs' required='N' />
 			<field name='LastFragment' required='N' />
+			<component name='OrdAllocGrp' required='N' />
+			<component name='ExecAllocGrp' required='N' />
+			<component name='Instrument' required='Y' />
+			<component name='InstrumentExtension' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='Parties' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='YieldData' required='N' />
 			<component name='AllocGrp' required='N' />
 		</message>
 		<message name='AllocationReportAck' msgtype='AT' msgcat='app'>
 			<field name='AllocReportID' required='Y' />
 			<field name='AllocID' required='Y' />
-			<component name='Parties' required='N' />
 			<field name='SecondaryAllocID' required='N' />
 			<field name='TradeDate' required='N' />
 			<field name='TransactTime' required='Y' />
@@ -1990,6 +2174,7 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='N' />
 			<component name='AllocAckGrp' required='N' />
 		</message>
 		<message name='ConfirmationAck' msgtype='AU' msgcat='app'>
@@ -2006,7 +2191,6 @@
 		<message name='SettlementInstructionRequest' msgtype='AV' msgcat='app'>
 			<field name='SettlInstReqID' required='Y' />
 			<field name='TransactTime' required='Y' />
-			<component name='Parties' required='N' />
 			<field name='AllocAccount' required='N' />
 			<field name='AllocAcctIDSource' required='N' />
 			<field name='Side' required='N' />
@@ -2019,20 +2203,15 @@
 			<field name='StandInstDbType' required='N' />
 			<field name='StandInstDbName' required='N' />
 			<field name='StandInstDbID' required='N' />
+			<component name='Parties' required='N' />
 		</message>
 		<message name='AssignmentReport' msgtype='AW' msgcat='app'>
 			<field name='AsgnRptID' required='Y' />
 			<field name='TotNumAssignmentReports' required='N' />
 			<field name='LastRptRequested' required='N' />
-			<component name='Parties' required='Y' />
 			<field name='Account' required='N' />
 			<field name='AccountType' required='Y' />
-			<component name='Instrument' required='N' />
 			<field name='Currency' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
-			<component name='PositionQty' required='Y' />
-			<component name='PositionAmountData' required='Y' />
 			<field name='ThresholdAmount' required='N' />
 			<field name='SettlPrice' required='Y' />
 			<field name='SettlPriceType' required='Y' />
@@ -2048,43 +2227,38 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='Parties' required='Y' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='PositionQty' required='Y' />
+			<component name='PositionAmountData' required='Y' />
 		</message>
 		<message name='CollateralRequest' msgtype='AX' msgcat='app'>
 			<field name='CollReqID' required='Y' />
 			<field name='CollAsgnReason' required='Y' />
 			<field name='TransactTime' required='Y' />
 			<field name='ExpireTime' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AccountType' required='N' />
 			<field name='ClOrdID' required='N' />
 			<field name='OrderID' required='N' />
 			<field name='SecondaryOrderID' required='N' />
 			<field name='SecondaryClOrdID' required='N' />
-			<component name='ExecCollGrp' required='N' />
-			<component name='TrdCollGrp' required='N' />
-			<component name='Instrument' required='N' />
-			<component name='FinancingDetails' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='Quantity' required='N' />
 			<field name='QtyType' required='N' />
 			<field name='Currency' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtCollGrp' required='N' />
 			<field name='MarginExcess' required='N' />
 			<field name='TotalNetValue' required='N' />
 			<field name='CashOutstanding' required='N' />
-			<component name='TrdRegTimestamps' required='N' />
 			<field name='Side' required='N' />
-			<component name='MiscFeesGrp' required='N' />
 			<field name='Price' required='N' />
 			<field name='PriceType' required='N' />
 			<field name='AccruedInterestAmt' required='N' />
 			<field name='EndAccruedInterestAmt' required='N' />
 			<field name='StartCash' required='N' />
 			<field name='EndCash' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='Stipulations' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
 			<field name='SettlSessID' required='N' />
@@ -2093,6 +2267,17 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='N' />
+			<component name='ExecCollGrp' required='N' />
+			<component name='TrdCollGrp' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtCollGrp' required='N' />
+			<component name='TrdRegTimestamps' required='N' />
+			<component name='MiscFeesGrp' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='Stipulations' required='N' />
 		</message>
 		<message name='CollateralAssignment' msgtype='AY' msgcat='app'>
 			<field name='CollAsgnID' required='Y' />
@@ -2102,38 +2287,26 @@
 			<field name='CollAsgnRefID' required='N' />
 			<field name='TransactTime' required='Y' />
 			<field name='ExpireTime' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AccountType' required='N' />
 			<field name='ClOrdID' required='N' />
 			<field name='OrderID' required='N' />
 			<field name='SecondaryOrderID' required='N' />
 			<field name='SecondaryClOrdID' required='N' />
-			<component name='ExecCollGrp' required='N' />
-			<component name='TrdCollGrp' required='N' />
-			<component name='Instrument' required='N' />
-			<component name='FinancingDetails' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='Quantity' required='N' />
 			<field name='QtyType' required='N' />
 			<field name='Currency' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtCollGrp' required='N' />
 			<field name='MarginExcess' required='N' />
 			<field name='TotalNetValue' required='N' />
 			<field name='CashOutstanding' required='N' />
-			<component name='TrdRegTimestamps' required='N' />
 			<field name='Side' required='N' />
-			<component name='MiscFeesGrp' required='N' />
 			<field name='Price' required='N' />
 			<field name='PriceType' required='N' />
 			<field name='AccruedInterestAmt' required='N' />
 			<field name='EndAccruedInterestAmt' required='N' />
 			<field name='StartCash' required='N' />
 			<field name='EndCash' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='Stipulations' required='N' />
-			<component name='SettlInstructionsData' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
 			<field name='SettlSessID' required='N' />
@@ -2142,6 +2315,18 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='N' />
+			<component name='ExecCollGrp' required='N' />
+			<component name='TrdCollGrp' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtCollGrp' required='N' />
+			<component name='TrdRegTimestamps' required='N' />
+			<component name='MiscFeesGrp' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='SettlInstructionsData' required='N' />
 		</message>
 		<message name='CollateralResponse' msgtype='AZ' msgcat='app'>
 			<field name='CollRespID' required='Y' />
@@ -2152,40 +2337,40 @@
 			<field name='CollAsgnRespType' required='Y' />
 			<field name='CollAsgnRejectReason' required='N' />
 			<field name='TransactTime' required='Y' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AccountType' required='N' />
 			<field name='ClOrdID' required='N' />
 			<field name='OrderID' required='N' />
 			<field name='SecondaryOrderID' required='N' />
 			<field name='SecondaryClOrdID' required='N' />
-			<component name='ExecCollGrp' required='N' />
-			<component name='TrdCollGrp' required='N' />
-			<component name='Instrument' required='N' />
-			<component name='FinancingDetails' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='Quantity' required='N' />
 			<field name='QtyType' required='N' />
 			<field name='Currency' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtCollGrp' required='N' />
 			<field name='MarginExcess' required='N' />
 			<field name='TotalNetValue' required='N' />
 			<field name='CashOutstanding' required='N' />
-			<component name='TrdRegTimestamps' required='N' />
 			<field name='Side' required='N' />
-			<component name='MiscFeesGrp' required='N' />
 			<field name='Price' required='N' />
 			<field name='PriceType' required='N' />
 			<field name='AccruedInterestAmt' required='N' />
 			<field name='EndAccruedInterestAmt' required='N' />
 			<field name='StartCash' required='N' />
 			<field name='EndCash' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='Stipulations' required='N' />
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='N' />
+			<component name='ExecCollGrp' required='N' />
+			<component name='TrdCollGrp' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtCollGrp' required='N' />
+			<component name='TrdRegTimestamps' required='N' />
+			<component name='MiscFeesGrp' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='Stipulations' required='N' />
 		</message>
 		<message name='CollateralReport' msgtype='BA' msgcat='app'>
 			<field name='CollRptID' required='Y' />
@@ -2193,38 +2378,26 @@
 			<field name='CollStatus' required='Y' />
 			<field name='TotNumReports' required='N' />
 			<field name='LastRptRequested' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AccountType' required='N' />
 			<field name='ClOrdID' required='N' />
 			<field name='OrderID' required='N' />
 			<field name='SecondaryOrderID' required='N' />
 			<field name='SecondaryClOrdID' required='N' />
-			<component name='ExecCollGrp' required='N' />
-			<component name='TrdCollGrp' required='N' />
-			<component name='Instrument' required='N' />
-			<component name='FinancingDetails' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='Quantity' required='N' />
 			<field name='QtyType' required='N' />
 			<field name='Currency' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='MarginExcess' required='N' />
 			<field name='TotalNetValue' required='N' />
 			<field name='CashOutstanding' required='N' />
-			<component name='TrdRegTimestamps' required='N' />
 			<field name='Side' required='N' />
-			<component name='MiscFeesGrp' required='N' />
 			<field name='Price' required='N' />
 			<field name='PriceType' required='N' />
 			<field name='AccruedInterestAmt' required='N' />
 			<field name='EndAccruedInterestAmt' required='N' />
 			<field name='StartCash' required='N' />
 			<field name='EndCash' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='Stipulations' required='N' />
-			<component name='SettlInstructionsData' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
 			<field name='SettlSessID' required='N' />
@@ -2233,34 +2406,37 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='Parties' required='N' />
+			<component name='ExecCollGrp' required='N' />
+			<component name='TrdCollGrp' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='TrdRegTimestamps' required='N' />
+			<component name='MiscFeesGrp' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='SettlInstructionsData' required='N' />
 		</message>
 		<message name='CollateralInquiry' msgtype='BB' msgcat='app'>
 			<field name='CollInquiryID' required='N' />
-			<component name='CollInqQualGrp' required='N' />
 			<field name='SubscriptionRequestType' required='N' />
 			<field name='ResponseTransportType' required='N' />
 			<field name='ResponseDestination' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AccountType' required='N' />
 			<field name='ClOrdID' required='N' />
 			<field name='OrderID' required='N' />
 			<field name='SecondaryOrderID' required='N' />
 			<field name='SecondaryClOrdID' required='N' />
-			<component name='ExecCollGrp' required='N' />
-			<component name='TrdCollGrp' required='N' />
-			<component name='Instrument' required='N' />
-			<component name='FinancingDetails' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='Quantity' required='N' />
 			<field name='QtyType' required='N' />
 			<field name='Currency' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='MarginExcess' required='N' />
 			<field name='TotalNetValue' required='N' />
 			<field name='CashOutstanding' required='N' />
-			<component name='TrdRegTimestamps' required='N' />
 			<field name='Side' required='N' />
 			<field name='Price' required='N' />
 			<field name='PriceType' required='N' />
@@ -2268,9 +2444,6 @@
 			<field name='EndAccruedInterestAmt' required='N' />
 			<field name='StartCash' required='N' />
 			<field name='EndCash' required='N' />
-			<component name='SpreadOrBenchmarkCurveData' required='N' />
-			<component name='Stipulations' required='N' />
-			<component name='SettlInstructionsData' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
 			<field name='SettlSessID' required='N' />
@@ -2279,6 +2452,18 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='CollInqQualGrp' required='N' />
+			<component name='Parties' required='N' />
+			<component name='ExecCollGrp' required='N' />
+			<component name='TrdCollGrp' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
+			<component name='TrdRegTimestamps' required='N' />
+			<component name='SpreadOrBenchmarkCurveData' required='N' />
+			<component name='Stipulations' required='N' />
+			<component name='SettlInstructionsData' required='N' />
 		</message>
 		<message name='NetworkCounterpartySystemStatusRequest' msgtype='BC' msgcat='app'>
 			<field name='NetworkRequestType' required='Y' />
@@ -2311,25 +2496,17 @@
 			<field name='CollInquiryID' required='Y' />
 			<field name='CollInquiryStatus' required='Y' />
 			<field name='CollInquiryResult' required='N' />
-			<component name='CollInqQualGrp' required='N' />
 			<field name='TotNumReports' required='N' />
-			<component name='Parties' required='N' />
 			<field name='Account' required='N' />
 			<field name='AccountType' required='N' />
 			<field name='ClOrdID' required='N' />
 			<field name='OrderID' required='N' />
 			<field name='SecondaryOrderID' required='N' />
 			<field name='SecondaryClOrdID' required='N' />
-			<component name='ExecCollGrp' required='N' />
-			<component name='TrdCollGrp' required='N' />
-			<component name='Instrument' required='N' />
-			<component name='FinancingDetails' required='N' />
 			<field name='SettlDate' required='N' />
 			<field name='Quantity' required='N' />
 			<field name='QtyType' required='N' />
 			<field name='Currency' required='N' />
-			<component name='InstrmtLegGrp' required='N' />
-			<component name='UndInstrmtGrp' required='N' />
 			<field name='TradingSessionID' required='N' />
 			<field name='TradingSessionSubID' required='N' />
 			<field name='SettlSessID' required='N' />
@@ -2340,11 +2517,18 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='CollInqQualGrp' required='N' />
+			<component name='Parties' required='N' />
+			<component name='ExecCollGrp' required='N' />
+			<component name='TrdCollGrp' required='N' />
+			<component name='Instrument' required='N' />
+			<component name='FinancingDetails' required='N' />
+			<component name='InstrmtLegGrp' required='N' />
+			<component name='UndInstrmtGrp' required='N' />
 		</message>
 		<message name='ConfirmationRequest' msgtype='BH' msgcat='app'>
 			<field name='ConfirmReqID' required='Y' />
 			<field name='ConfirmType' required='Y' />
-			<component name='OrdAllocGrp' required='N' />
 			<field name='AllocID' required='N' />
 			<field name='SecondaryAllocID' required='N' />
 			<field name='IndividualAllocID' required='N' />
@@ -2355,6 +2539,7 @@
 			<field name='Text' required='N' />
 			<field name='EncodedTextLen' required='N' />
 			<field name='EncodedText' required='N' />
+			<component name='OrdAllocGrp' required='N' />
 		</message>
 	</messages>
 	<trailer>
@@ -2394,7 +2579,6 @@
 			<field name='SymbolSfx' required='N' />
 			<field name='SecurityID' required='N' />
 			<field name='SecurityIDSource' required='N' />
-			<component name='SecAltIDGrp' required='N' />
 			<field name='Product' required='N' />
 			<field name='CFICode' required='N' />
 			<field name='SecurityType' required='N' />
@@ -2430,9 +2614,10 @@
 			<field name='ContractSettlMonth' required='N' />
 			<field name='CPProgram' required='N' />
 			<field name='CPRegType' required='N' />
-			<component name='EvntGrp' required='N' />
 			<field name='DatedDate' required='N' />
 			<field name='InterestAccrualDate' required='N' />
+			<component name='EvntGrp' required='N' />
+			<component name='SecAltIDGrp' required='N' />
 		</component>
 		<component name='InstrumentExtension'>
 			<field name='DeliveryForm' required='N' />
@@ -2444,7 +2629,6 @@
 			<field name='LegSymbolSfx' required='N' />
 			<field name='LegSecurityID' required='N' />
 			<field name='LegSecurityIDSource' required='N' />
-			<component name='LegSecAltIDGrp' required='N' />
 			<field name='LegProduct' required='N' />
 			<field name='LegCFICode' required='N' />
 			<field name='LegSecurityType' required='N' />
@@ -2482,6 +2666,7 @@
 			<field name='LegDatedDate' required='N' />
 			<field name='LegContractSettlMonth' required='N' />
 			<field name='LegInterestAccrualDate' required='N' />
+			<component name='LegSecAltIDGrp' required='N' />
 		</component>
 		<component name='LegBenchmarkCurveData'>
 			<field name='LegBenchmarkCurveCurrency' required='N' />
@@ -2585,7 +2770,6 @@
 			<field name='UnderlyingSymbolSfx' required='N' />
 			<field name='UnderlyingSecurityID' required='N' />
 			<field name='UnderlyingSecurityIDSource' required='N' />
-			<component name='UndSecAltIDGrp' required='N' />
 			<field name='UnderlyingProduct' required='N' />
 			<field name='UnderlyingCFICode' required='N' />
 			<field name='UnderlyingSecurityType' required='N' />
@@ -2628,6 +2812,7 @@
 			<field name='UnderlyingCurrentValue' required='N' />
 			<field name='UnderlyingEndValue' required='N' />
 			<component name='UnderlyingStipulations' required='N' />
+			<component name='UndSecAltIDGrp' required='N' />
 		</component>
 		<component name='YieldData'>
 			<field name='YieldType' required='N' />
@@ -2687,13 +2872,11 @@
 				<field name='AllocQty' required='N' />
 				<field name='IndividualAllocID' required='N' />
 				<field name='ProcessCode' required='N' />
-				<component name='NestedParties' required='N' />
 				<field name='NotifyBrokerOfCredit' required='N' />
 				<field name='Alloc  [HandlInst](#handlinst)  ' required='N' />
 				<field name='AllocText' required='N' />
 				<field name='EncodedAllocTextLen' required='N' />
 				<field name='EncodedAllocText' required='N' />
-				<component name='CommissionData' required='N' />
 				<field name='AllocAvgPx' required='N' />
 				<field name='AllocNetMoney' required='N' />
 				<field name='SettlCurrAmt' required='N' />
@@ -2704,9 +2887,11 @@
 				<field name='SettlCurrFxRateCalc' required='N' />
 				<field name='AllocAccruedInterestAmt' required='N' />
 				<field name='AllocInterestAtMaturity' required='N' />
+				<field name='AllocSettlInstType' required='N' />
+				<component name='NestedParties' required='N' />
+				<component name='CommissionData' required='N' />
 				<component name='MiscFeesGrp' required='N' />
 				<component name='ClrInstGrp' required='N' />
-				<field name='AllocSettlInstType' required='N' />
 				<component name='SettlInstructionsData' required='N' />
 			</group>
 		</component>
@@ -2725,7 +2910,6 @@
 		</component>
 		<component name='BidCompRspGrp'>
 			<group name='NoBidComponents' required='Y'>
-				<component name='CommissionData' required='Y' />
 				<field name='ListID' required='N' />
 				<field name='Country' required='N' />
 				<field name='Side' required='N' />
@@ -2740,6 +2924,7 @@
 				<field name='Text' required='N' />
 				<field name='EncodedTextLen' required='N' />
 				<field name='EncodedText' required='N' />
+				<component name='CommissionData' required='Y' />
 			</group>
 		</component>
 		<component name='BidDescReqGrp'>
@@ -2835,18 +3020,18 @@
 		</component>
 		<component name='InstrmtLegExecGrp'>
 			<group name='NoLegs' required='N'>
-				<component name='InstrumentLeg' required='N' />
 				<field name='LegQty' required='N' />
 				<field name='LegSwapType' required='N' />
-				<component name='LegStipulations' required='N' />
 				<field name='LegPositionEffect' required='N' />
 				<field name='LegCoveredOrUncovered' required='N' />
-				<component name='NestedParties' required='N' />
 				<field name='LegRefID' required='N' />
 				<field name='LegPrice' required='N' />
 				<field name='LegSettlType' required='N' />
 				<field name='LegSettlDate' required='N' />
 				<field name='LegLastPx' required='N' />
+				<component name='InstrumentLeg' required='N' />
+				<component name='LegStipulations' required='N' />
+				<component name='NestedParties' required='N' />
 			</group>
 		</component>
 		<component name='InstrmtLegGrp'>
@@ -2856,16 +3041,16 @@
 		</component>
 		<component name='InstrmtLegIOIGrp'>
 			<group name='NoLegs' required='N'>
-				<component name='InstrumentLeg' required='N' />
 				<field name='LegIOIQty' required='N' />
+				<component name='InstrumentLeg' required='N' />
 				<component name='LegStipulations' required='N' />
 			</group>
 		</component>
 		<component name='InstrmtLegSecListGrp'>
 			<group name='NoLegs' required='N'>
-				<component name='InstrumentLeg' required='N' />
 				<field name='LegSwapType' required='N' />
 				<field name='LegSettlType' required='N' />
+				<component name='InstrumentLeg' required='N' />
 				<component name='LegStipulations' required='N' />
 				<component name='LegBenchmarkCurveData' required='N' />
 			</group>
@@ -2889,52 +3074,52 @@
 		</component>
 		<component name='LegOrdGrp'>
 			<group name='NoLegs' required='Y'>
-				<component name='InstrumentLeg' required='N' />
 				<field name='LegQty' required='N' />
 				<field name='LegSwapType' required='N' />
-				<component name='LegStipulations' required='N' />
-				<component name='LegPreAllocGrp' required='N' />
 				<field name='LegPositionEffect' required='N' />
 				<field name='LegCoveredOrUncovered' required='N' />
-				<component name='NestedParties' required='N' />
 				<field name='LegRefID' required='N' />
 				<field name='LegPrice' required='N' />
 				<field name='LegSettlType' required='N' />
 				<field name='LegSettlDate' required='N' />
+				<component name='InstrumentLeg' required='N' />
+				<component name='LegStipulations' required='N' />
+				<component name='LegPreAllocGrp' required='N' />
+				<component name='NestedParties' required='N' />
 			</group>
 		</component>
 		<component name='LegPreAllocGrp'>
 			<group name='NoLegAllocs' required='N'>
 				<field name='LegAllocAccount' required='N' />
 				<field name='LegIndividualAllocID' required='N' />
-				<component name='NestedParties2' required='N' />
 				<field name='LegAllocQty' required='N' />
 				<field name='LegAllocAcctIDSource' required='N' />
 				<field name='LegSettlCurrency' required='N' />
+				<component name='NestedParties2' required='N' />
 			</group>
 		</component>
 		<component name='LegQuotGrp'>
 			<group name='NoLegs' required='N'>
-				<component name='InstrumentLeg' required='N' />
 				<field name='LegQty' required='N' />
 				<field name='LegSwapType' required='N' />
 				<field name='LegSettlType' required='N' />
 				<field name='LegSettlDate' required='N' />
-				<component name='LegStipulations' required='N' />
-				<component name='NestedParties' required='N' />
 				<field name='LegPriceType' required='N' />
 				<field name='LegBidPx' required='N' />
 				<field name='LegOfferPx' required='N' />
+				<component name='InstrumentLeg' required='N' />
+				<component name='LegStipulations' required='N' />
+				<component name='NestedParties' required='N' />
 				<component name='LegBenchmarkCurveData' required='N' />
 			</group>
 		</component>
 		<component name='LegQuotStatGrp'>
 			<group name='NoLegs' required='N'>
-				<component name='InstrumentLeg' required='N' />
 				<field name='LegQty' required='N' />
 				<field name='LegSwapType' required='N' />
 				<field name='LegSettlType' required='N' />
 				<field name='LegSettlDate' required='N' />
+				<component name='InstrumentLeg' required='N' />
 				<component name='LegStipulations' required='N' />
 				<component name='NestedParties' required='N' />
 			</group>
@@ -2953,7 +3138,6 @@
 				<field name='ListSeqNo' required='Y' />
 				<field name='ClOrdLinkID' required='N' />
 				<field name='SettlInstMode' required='N' />
-				<component name='Parties' required='N' />
 				<field name='TradeOriginationDate' required='N' />
 				<field name='TradeDate' required='N' />
 				<field name='Account' required='N' />
@@ -2963,7 +3147,6 @@
 				<field name='BookingUnit' required='N' />
 				<field name='AllocID' required='N' />
 				<field name='PreallocMethod' required='N' />
-				<component name='PreAllocGrp' required='N' />
 				<field name='SettlType' required='N' />
 				<field name='SettlDate' required='N' />
 				<field name='CashMargin' required='N' />
@@ -2973,24 +3156,17 @@
 				<field name='MinQty' required='N' />
 				<field name='MaxFloor' required='N' />
 				<field name='ExDestination' required='N' />
-				<component name='TrdgSesGrp' required='N' />
 				<field name='ProcessCode' required='N' />
-				<component name='Instrument' required='Y' />
-				<component name='UndInstrmtGrp' required='N' />
 				<field name='PrevClosePx' required='N' />
 				<field name='Side' required='Y' />
 				<field name='SideValueInd' required='N' />
 				<field name='LocateReqd' required='N' />
 				<field name='TransactTime' required='N' />
-				<component name='Stipulations' required='N' />
 				<field name='QtyType' required='N' />
-				<component name='OrderQtyData' required='Y' />
 				<field name='OrdType' required='N' />
 				<field name='PriceType' required='N' />
 				<field name='Price' required='N' />
 				<field name='StopPx' required='N' />
-				<component name='SpreadOrBenchmarkCurveData' required='N' />
-				<component name='YieldData' required='N' />
 				<field name='Currency' required='N' />
 				<field name='ComplianceID' required='N' />
 				<field name='SolicitedFlag' required='N' />
@@ -3001,7 +3177,6 @@
 				<field name='ExpireDate' required='N' />
 				<field name='ExpireTime' required='N' />
 				<field name='GTBookingInst' required='N' />
-				<component name='CommissionData' required='N' />
 				<field name='OrderCapacity' required='N' />
 				<field name='OrderRestrictions' required='N' />
 				<field name='CustOrderCapacity' required='N' />
@@ -3017,12 +3192,22 @@
 				<field name='PositionEffect' required='N' />
 				<field name='CoveredOrUncovered' required='N' />
 				<field name='MaxShow' required='N' />
-				<component name='PegInstructions' required='N' />
-				<component name='DiscretionInstructions' required='N' />
 				<field name='TargetStrategy' required='N' />
 				<field name='TargetStrategyParameters' required='N' />
 				<field name='ParticipationRate' required='N' />
 				<field name='Designation' required='N' />
+				<component name='Parties' required='N' />
+				<component name='PreAllocGrp' required='N' />
+				<component name='TrdgSesGrp' required='N' />
+				<component name='Instrument' required='Y' />
+				<component name='UndInstrmtGrp' required='N' />
+				<component name='Stipulations' required='N' />
+				<component name='OrderQtyData' required='Y' />
+				<component name='SpreadOrBenchmarkCurveData' required='N' />
+				<component name='YieldData' required='N' />
+				<component name='CommissionData' required='N' />
+				<component name='PegInstructions' required='N' />
+				<component name='DiscretionInstructions' required='N' />
 			</group>
 		</component>
 		<component name='MDFullGrp'>
@@ -3069,9 +3254,6 @@
 				<field name='MDEntryType' required='N' />
 				<field name='MDEntryID' required='N' />
 				<field name='MDEntryRefID' required='N' />
-				<component name='Instrument' required='N' />
-				<component name='UndInstrmtGrp' required='N' />
-				<component name='InstrmtLegGrp' required='N' />
 				<field name='FinancialStatus' required='N' />
 				<field name='CorporateAction' required='N' />
 				<field name='MDEntryPx' required='N' />
@@ -3107,6 +3289,9 @@
 				<field name='Text' required='N' />
 				<field name='EncodedTextLen' required='N' />
 				<field name='EncodedText' required='N' />
+				<component name='Instrument' required='N' />
+				<component name='UndInstrmtGrp' required='N' />
+				<component name='InstrmtLegGrp' required='N' />
 			</group>
 		</component>
 		<component name='MDReqGrp'>
@@ -3134,10 +3319,10 @@
 				<field name='SecondaryOrderID' required='N' />
 				<field name='SecondaryClOrdID' required='N' />
 				<field name='ListID' required='N' />
-				<component name='NestedParties2' required='N' />
 				<field name='OrderQty' required='N' />
 				<field name='OrderAvgPx' required='N' />
 				<field name='OrderBookingQty' required='N' />
+				<component name='NestedParties2' required='N' />
 			</group>
 		</component>
 		<component name='OrdListStatGrp'>
@@ -3158,9 +3343,9 @@
 		</component>
 		<component name='PosUndInstrmtGrp'>
 			<group name='NoUnderlyings' required='N'>
-				<component name='UnderlyingInstrument' required='N' />
 				<field name='UnderlyingSettlPrice' required='Y' />
 				<field name='UnderlyingSettlPriceType' required='Y' />
+				<component name='UnderlyingInstrument' required='N' />
 			</group>
 		</component>
 		<component name='PreAllocGrp'>
@@ -3169,8 +3354,8 @@
 				<field name='AllocAcctIDSource' required='N' />
 				<field name='AllocSettlCurrency' required='N' />
 				<field name='IndividualAllocID' required='N' />
-				<component name='NestedParties' required='N' />
 				<field name='AllocQty' required='N' />
+				<component name='NestedParties' required='N' />
 			</group>
 		</component>
 		<component name='PreAllocMlegGrp'>
@@ -3179,8 +3364,8 @@
 				<field name='AllocAcctIDSource' required='N' />
 				<field name='AllocSettlCurrency' required='N' />
 				<field name='IndividualAllocID' required='N' />
-				<component name='NestedParties3' required='N' />
 				<field name='AllocQty' required='N' />
+				<component name='NestedParties3' required='N' />
 			</group>
 		</component>
 		<component name='QuotCxlEntriesGrp'>
@@ -3194,8 +3379,6 @@
 		<component name='QuotEntryAckGrp'>
 			<group name='NoQuoteEntries' required='N'>
 				<field name='QuoteEntryID' required='N' />
-				<component name='Instrument' required='N' />
-				<component name='InstrmtLegGrp' required='N' />
 				<field name='BidPx' required='N' />
 				<field name='OfferPx' required='N' />
 				<field name='BidSize' required='N' />
@@ -3220,13 +3403,13 @@
 				<field name='OfferForwardPoints2' required='N' />
 				<field name='Currency' required='N' />
 				<field name='QuoteEntryRejectReason' required='N' />
+				<component name='Instrument' required='N' />
+				<component name='InstrmtLegGrp' required='N' />
 			</group>
 		</component>
 		<component name='QuotEntryGrp'>
 			<group name='NoQuoteEntries' required='Y'>
 				<field name='QuoteEntryID' required='Y' />
-				<component name='Instrument' required='N' />
-				<component name='InstrmtLegGrp' required='N' />
 				<field name='BidPx' required='N' />
 				<field name='OfferPx' required='N' />
 				<field name='BidSize' required='N' />
@@ -3250,6 +3433,8 @@
 				<field name='BidForwardPoints2' required='N' />
 				<field name='OfferForwardPoints2' required='N' />
 				<field name='Currency' required='N' />
+				<component name='Instrument' required='N' />
+				<component name='InstrmtLegGrp' required='N' />
 			</group>
 		</component>
 		<component name='QuotQualGrp'>
@@ -3259,9 +3444,6 @@
 		</component>
 		<component name='QuotReqGrp'>
 			<group name='NoRelatedSym' required='Y'>
-				<component name='Instrument' required='Y' />
-				<component name='FinancingDetails' required='N' />
-				<component name='UndInstrmtGrp' required='N' />
 				<field name='PrevClosePx' required='N' />
 				<field name='QuoteRequestType' required='N' />
 				<field name='QuoteType' required='N' />
@@ -3270,38 +3452,41 @@
 				<field name='TradeOriginationDate' required='N' />
 				<field name='Side' required='N' />
 				<field name='QtyType' required='N' />
-				<component name='OrderQtyData' required='N' />
 				<field name='SettlType' required='N' />
 				<field name='SettlDate' required='N' />
 				<field name='SettlDate2' required='N' />
 				<field name='OrderQty2' required='N' />
 				<field name='Currency' required='N' />
-				<component name='Stipulations' required='N' />
 				<field name='Account' required='N' />
 				<field name='AcctIDSource' required='N' />
 				<field name='AccountType' required='N' />
-				<component name='QuotReqLegsGrp' required='N' />
-				<component name='QuotQualGrp' required='N' />
 				<field name='QuotePriceType' required='N' />
 				<field name='OrdType' required='N' />
 				<field name='ValidUntilTime' required='N' />
 				<field name='ExpireTime' required='N' />
 				<field name='TransactTime' required='N' />
-				<component name='SpreadOrBenchmarkCurveData' required='N' />
 				<field name='PriceType' required='N' />
 				<field name='Price' required='N' />
 				<field name='Price2' required='N' />
+				<component name='Instrument' required='Y' />
+				<component name='FinancingDetails' required='N' />
+				<component name='UndInstrmtGrp' required='N' />
+				<component name='OrderQtyData' required='N' />
+				<component name='Stipulations' required='N' />
+				<component name='QuotReqLegsGrp' required='N' />
+				<component name='QuotQualGrp' required='N' />
+				<component name='SpreadOrBenchmarkCurveData' required='N' />
 				<component name='YieldData' required='N' />
 				<component name='Parties' required='N' />
 			</group>
 		</component>
 		<component name='QuotReqLegsGrp'>
 			<group name='NoLegs' required='N'>
-				<component name='InstrumentLeg' required='N' />
 				<field name='LegQty' required='N' />
 				<field name='LegSwapType' required='N' />
 				<field name='LegSettlType' required='N' />
 				<field name='LegSettlDate' required='N' />
+				<component name='InstrumentLeg' required='N' />
 				<component name='LegStipulations' required='N' />
 				<component name='NestedParties' required='N' />
 				<component name='LegBenchmarkCurveData' required='N' />
@@ -3309,9 +3494,6 @@
 		</component>
 		<component name='QuotReqRjctGrp'>
 			<group name='NoRelatedSym' required='Y'>
-				<component name='Instrument' required='Y' />
-				<component name='FinancingDetails' required='N' />
-				<component name='UndInstrmtGrp' required='N' />
 				<field name='PrevClosePx' required='N' />
 				<field name='QuoteRequestType' required='N' />
 				<field name='QuoteType' required='N' />
@@ -3320,26 +3502,29 @@
 				<field name='TradeOriginationDate' required='N' />
 				<field name='Side' required='N' />
 				<field name='QtyType' required='N' />
-				<component name='OrderQtyData' required='N' />
 				<field name='SettlType' required='N' />
 				<field name='SettlDate' required='N' />
 				<field name='SettlDate2' required='N' />
 				<field name='OrderQty2' required='N' />
 				<field name='Currency' required='N' />
-				<component name='Stipulations' required='N' />
 				<field name='Account' required='N' />
 				<field name='AcctIDSource' required='N' />
 				<field name='AccountType' required='N' />
-				<component name='QuotReqLegsGrp' required='N' />
-				<component name='QuotQualGrp' required='N' />
 				<field name='QuotePriceType' required='N' />
 				<field name='OrdType' required='N' />
 				<field name='ExpireTime' required='N' />
 				<field name='TransactTime' required='N' />
-				<component name='SpreadOrBenchmarkCurveData' required='N' />
 				<field name='PriceType' required='N' />
 				<field name='Price' required='N' />
 				<field name='Price2' required='N' />
+				<component name='Instrument' required='Y' />
+				<component name='FinancingDetails' required='N' />
+				<component name='UndInstrmtGrp' required='N' />
+				<component name='OrderQtyData' required='N' />
+				<component name='Stipulations' required='N' />
+				<component name='QuotReqLegsGrp' required='N' />
+				<component name='QuotQualGrp' required='N' />
+				<component name='SpreadOrBenchmarkCurveData' required='N' />
 				<component name='YieldData' required='N' />
 				<component name='Parties' required='N' />
 			</group>
@@ -3347,46 +3532,52 @@
 		<component name='QuotSetAckGrp'>
 			<group name='NoQuoteSets' required='N'>
 				<field name='QuoteSetID' required='N' />
-				<component name='UnderlyingInstrument' required='N' />
 				<field name='TotNoQuoteEntries' required='N' />
 				<field name='LastFragment' required='N' />
+				<component name='UnderlyingInstrument' required='N' />
 				<component name='QuotEntryAckGrp' required='N' />
 			</group>
 		</component>
 		<component name='QuotSetGrp'>
 			<group name='NoQuoteSets' required='Y'>
 				<field name='QuoteSetID' required='Y' />
-				<component name='UnderlyingInstrument' required='N' />
 				<field name='QuoteSetValidUntilTime' required='N' />
 				<field name='TotNoQuoteEntries' required='Y' />
 				<field name='LastFragment' required='N' />
+				<component name='UnderlyingInstrument' required='N' />
 				<component name='QuotEntryGrp' required='Y' />
 			</group>
 		</component>
 		<component name='RelSymDerivSecGrp'>
 			<group name='NoRelatedSym' required='N'>
-				<component name='Instrument' required='N' />
 				<field name='Currency' required='N' />
 				<field name='ExpirationCycle' required='N' />
-				<component name='InstrumentExtension' required='N' />
-				<component name='InstrmtLegGrp' required='N' />
 				<field name='TradingSessionID' required='N' />
 				<field name='TradingSessionSubID' required='N' />
 				<field name='Text' required='N' />
 				<field name='EncodedTextLen' required='N' />
 				<field name='EncodedText' required='N' />
+				<component name='Instrument' required='N' />
+				<component name='InstrumentExtension' required='N' />
+				<component name='InstrmtLegGrp' required='N' />
 			</group>
 		</component>
 		<component name='RFQReqGrp'>
 			<group name='NoRelatedSym' required='Y'>
-				<component name='Instrument' required='Y' />
-				<component name='UndInstrmtGrp' required='N' />
-				<component name='InstrmtLegGrp' required='N' />
 				<field name='PrevClosePx' required='N' />
 				<field name='QuoteRequestType' required='N' />
+				<field name='Currency' required='N' />
 				<field name='QuoteType' required='N' />
+				<field name='ExpirationCycle' required='N' />
 				<field name='TradingSessionID' required='N' />
 				<field name='TradingSessionSubID' required='N' />
+				<field name='Text' required='N' />
+				<field name='EncodedTextLen' required='N' />
+				<field name='EncodedText' required='N' />
+				<component name='Instrument' required='N' />
+				<component name='InstrumentExtension' required='N' />
+				<component name='UndInstrmtGrp' required='N' />
+				<component name='InstrmtLegGrp' required='N' />
 			</group>
 		</component>
 		<component name='RgstDistInstGrp'>
@@ -3407,10 +3598,10 @@
 				<field name='RegistEmail' required='N' />
 				<field name='MailingDtls' required='N' />
 				<field name='MailingInst' required='N' />
-				<component name='NestedParties' required='N' />
 				<field name='OwnerType' required='N' />
 				<field name='DateOfBirth' required='N' />
 				<field name='InvestorCountryOfResidence' required='N' />
+				<component name='NestedParties' required='N' />
 			</group>
 		</component>
 		<component name='RoutingGrp'>
@@ -3421,15 +3612,7 @@
 		</component>
 		<component name='SecListGrp'>
 			<group name='NoRelatedSym' required='N'>
-				<component name='Instrument' required='N' />
-				<component name='InstrumentExtension' required='N' />
-				<component name='FinancingDetails' required='N' />
-				<component name='UndInstrmtGrp' required='N' />
 				<field name='Currency' required='N' />
-				<component name='Stipulations' required='N' />
-				<component name='InstrmtLegSecListGrp' required='N' />
-				<component name='SpreadOrBenchmarkCurveData' required='N' />
-				<component name='YieldData' required='N' />
 				<field name='RoundLot' required='N' />
 				<field name='MinTradeVol' required='N' />
 				<field name='TradingSessionID' required='N' />
@@ -3438,6 +3621,14 @@
 				<field name='Text' required='N' />
 				<field name='EncodedTextLen' required='N' />
 				<field name='EncodedText' required='N' />
+				<component name='Instrument' required='N' />
+				<component name='InstrumentExtension' required='N' />
+				<component name='FinancingDetails' required='N' />
+				<component name='UndInstrmtGrp' required='N' />
+				<component name='Stipulations' required='N' />
+				<component name='InstrmtLegSecListGrp' required='N' />
+				<component name='SpreadOrBenchmarkCurveData' required='N' />
+				<component name='YieldData' required='N' />
 			</group>
 		</component>
 		<component name='SecTypesGrp'>
@@ -3453,7 +3644,6 @@
 				<field name='SettlInstID' required='N' />
 				<field name='SettlInstTransType' required='N' />
 				<field name='SettlInstRefID' required='N' />
-				<component name='Parties' required='N' />
 				<field name='Side' required='N' />
 				<field name='Product' required='N' />
 				<field name='SecurityType' required='N' />
@@ -3461,7 +3651,6 @@
 				<field name='EffectiveTime' required='N' />
 				<field name='ExpireTime' required='N' />
 				<field name='LastUpdateTime' required='N' />
-				<component name='SettlInstructionsData' required='N' />
 				<field name='PaymentMethod' required='N' />
 				<field name='PaymentRef' required='N' />
 				<field name='CardHolderName' required='N' />
@@ -3471,6 +3660,8 @@
 				<field name='CardIssNum' required='N' />
 				<field name='PaymentDate' required='N' />
 				<field name='PaymentRemitterID' required='N' />
+				<component name='Parties' required='N' />
+				<component name='SettlInstructionsData' required='N' />
 			</group>
 		</component>
 		<component name='SideCrossOrdCxlGrp'>
@@ -3481,14 +3672,14 @@
 				<field name='SecondaryClOrdID' required='N' />
 				<field name='ClOrdLinkID' required='N' />
 				<field name='OrigOrdModTime' required='N' />
-				<component name='Parties' required='N' />
 				<field name='TradeOriginationDate' required='N' />
 				<field name='TradeDate' required='N' />
-				<component name='OrderQtyData' required='Y' />
 				<field name='ComplianceID' required='N' />
 				<field name='Text' required='N' />
 				<field name='EncodedTextLen' required='N' />
 				<field name='EncodedText' required='N' />
+				<component name='Parties' required='N' />
+				<component name='OrderQtyData' required='Y' />
 			</group>
 		</component>
 		<component name='SideCrossOrdModGrp'>
@@ -3497,7 +3688,6 @@
 				<field name='ClOrdID' required='Y' />
 				<field name='SecondaryClOrdID' required='N' />
 				<field name='ClOrdLinkID' required='N' />
-				<component name='Parties' required='N' />
 				<field name='TradeOriginationDate' required='N' />
 				<field name='TradeDate' required='N' />
 				<field name='Account' required='N' />
@@ -3507,10 +3697,7 @@
 				<field name='BookingUnit' required='N' />
 				<field name='PreallocMethod' required='N' />
 				<field name='AllocID' required='N' />
-				<component name='PreAllocGrp' required='N' />
 				<field name='QtyType' required='N' />
-				<component name='OrderQtyData' required='Y' />
-				<component name='CommissionData' required='N' />
 				<field name='OrderCapacity' required='N' />
 				<field name='OrderRestrictions' required='N' />
 				<field name='CustOrderCapacity' required='N' />
@@ -3526,6 +3713,10 @@
 				<field name='ClearingFeeIndicator' required='N' />
 				<field name='SolicitedFlag' required='N' />
 				<field name='SideComplianceID' required='N' />
+				<component name='Parties' required='N' />
+				<component name='PreAllocGrp' required='N' />
+				<component name='OrderQtyData' required='Y' />
+				<component name='CommissionData' required='N' />
 			</group>
 		</component>
 		<component name='TrdAllocGrp'>
@@ -3534,8 +3725,8 @@
 				<field name='AllocAcctIDSource' required='N' />
 				<field name='AllocSettlCurrency' required='N' />
 				<field name='IndividualAllocID' required='N' />
-				<component name='NestedParties2' required='N' />
 				<field name='AllocQty' required='N' />
+				<component name='NestedParties2' required='N' />
 			</group>
 		</component>
 		<component name='TrdCapRptSideGrp'>
@@ -3546,13 +3737,11 @@
 				<field name='ClOrdID' required='N' />
 				<field name='SecondaryClOrdID' required='N' />
 				<field name='ListID' required='N' />
-				<component name='Parties' required='N' />
 				<field name='Account' required='N' />
 				<field name='AcctIDSource' required='N' />
 				<field name='AccountType' required='N' />
 				<field name='ProcessCode' required='N' />
 				<field name='OddLot' required='N' />
-				<component name='ClrInstGrp' required='N' />
 				<field name='TradeInputSource' required='N' />
 				<field name='TradeInputDevice' required='N' />
 				<field name='OrderInputDevice' required='N' />
@@ -3568,7 +3757,6 @@
 				<field name='TradingSessionID' required='N' />
 				<field name='TradingSessionSubID' required='N' />
 				<field name='TimeBracket' required='N' />
-				<component name='CommissionData' required='N' />
 				<field name='GrossTradeAmt' required='N' />
 				<field name='NumDaysInterest' required='N' />
 				<field name='ExDate' required='N' />
@@ -3590,13 +3778,16 @@
 				<field name='EncodedTextLen' required='N' />
 				<field name='EncodedText' required='N' />
 				<field name='SideMultiLegReportingType' required='N' />
-				<component name='ContAmtGrp' required='N' />
-				<component name='Stipulations' required='N' />
-				<component name='MiscFeesGrp' required='N' />
 				<field name='ExchangeRule' required='N' />
 				<field name='TradeAllocIndicator' required='N' />
 				<field name='PreallocMethod' required='N' />
 				<field name='AllocID' required='N' />
+				<component name='Parties' required='N' />
+				<component name='ClrInstGrp' required='N' />
+				<component name='CommissionData' required='N' />
+				<component name='ContAmtGrp' required='N' />
+				<component name='Stipulations' required='N' />
+				<component name='MiscFeesGrp' required='N' />
 				<component name='TrdAllocGrp' required='N' />
 			</group>
 		</component>
@@ -3608,18 +3799,18 @@
 		</component>
 		<component name='TrdInstrmtLegGrp'>
 			<group name='NoLegs' required='N'>
-				<component name='InstrumentLeg' required='N' />
 				<field name='LegQty' required='N' />
 				<field name='LegSwapType' required='N' />
-				<component name='LegStipulations' required='N' />
 				<field name='LegPositionEffect' required='N' />
 				<field name='LegCoveredOrUncovered' required='N' />
-				<component name='NestedParties' required='N' />
 				<field name='LegRefID' required='N' />
 				<field name='LegPrice' required='N' />
 				<field name='LegSettlType' required='N' />
 				<field name='LegSettlDate' required='N' />
 				<field name='LegLastPx' required='N' />
+				<component name='InstrumentLeg' required='N' />
+				<component name='LegStipulations' required='N' />
+				<component name='NestedParties' required='N' />
 			</group>
 		</component>
 		<component name='TrdgSesGrp'>
@@ -3630,8 +3821,8 @@
 		</component>
 		<component name='UndInstrmtCollGrp'>
 			<group name='NoUnderlyings' required='N'>
-				<component name='UnderlyingInstrument' required='N' />
 				<field name='CollAction' required='N' />
+				<component name='UnderlyingInstrument' required='N' />
 			</group>
 		</component>
 		<component name='UndInstrmtGrp'>
@@ -3641,7 +3832,6 @@
 		</component>
 		<component name='UndInstrmtStrkPxGrp'>
 			<group name='NoUnderlyings' required='N'>
-				<component name='UnderlyingInstrument' required='N' />
 				<field name='PrevClosePx' required='N' />
 				<field name='ClOrdID' required='N' />
 				<field name='SecondaryClOrdID' required='N' />
@@ -3651,6 +3841,7 @@
 				<field name='Text' required='N' />
 				<field name='EncodedTextLen' required='N' />
 				<field name='EncodedText' required='N' />
+				<component name='UnderlyingInstrument' required='N' />
 			</group>
 		</component>
 		<component name='TrdCapDtGrp'>
@@ -3806,6 +3997,7 @@
 			<value enum='e' description='WORK_TO_TARGET_STRATEGY' />
 		</field>
 		<field number='19' name='ExecRefID' type='STRING' />
+		<field number='20' name='ExecTransType' type='CHAR' />
 		<field number='21' name='  [HandlInst](#handlinst)  ' type='CHAR'>
 			<value enum='1' description='AUTOMATED_EXECUTION_ORDER_PRIVATE_NO_BROKER_INTERVENTION' />
 			<value enum='2' description='AUTOMATED_EXECUTION_ORDER_PUBLIC_BROKER_INTERVENTION_OK' />
@@ -6597,6 +6789,55 @@
 		<field number='954' name='Nested3PartySubIDType' type='INT' />
 		<field number='955' name='LegContractSettlMonth' type='MONTHYEAR' />
 		<field number='956' name='LegInterestAccrualDate' type='LOCALMKTDATE' />
+		<field number='1057' name='AggressorIndicator' type='BOOLEAN' />
 		<field number='6032' name="UniqueTradeID" type="STRING" />
+		<field number='1138' name='DisplayQty' type='FLOAT' />
+		<field number='5149' name='Memo' type='STRING' />
+		<field number='50001' name='TargetStrategy' type='STRING' />		
+		<field number='50010' name='offset' type='STRING' />
+		<field number='50011' name='sniper-price' type='STRING' />
+		<field number='10014' name='consider-cross-orders' type='STRING' />
+		<field number='10015' name='consider-limit-price' type='STRING' />
+		<field number='10016' name='would-price' type='STRING' />
+		<field number='10019' name='would-qty' type='STRING' />
+		<field number='10020' name='would-max-floor' type='STRING' />
+		<field number='10527' name='unintentional-cross-min-size' type='STRING' />
+		<field number='50002' name='auction-leftover' type='STRING' />
+		<field number='50003' name='closing-auction-qty' type='STRING' />
+		<field number='50004' name='auction-intraday' type='STRING' />
+		<field number='50005' name='limit-by-volume-auction-qty' type='STRING' />
+		<field number='50006' name='tilt' type='STRING' />
+		<field number='50008' name='participation-tolerance' type='STRING' />
+		<field number='50014' name='historical-on-close' type='STRING' />
+		<field number='50015' name='reference-index' type='STRING' />
+		<field number='50016' name='limit-type' type='STRING' />
+		<field number='50017' name='relative-limit' type='STRING' />
+		<field number='50018' name='mkt-qty' type='STRING' />
+		<field number='50019' name='auction-market-protection-bps' type='STRING' />
+		<field number='50020' name='close-auction-participation' type='STRING' />
+		<field number='50021' name='max-close-auction-participation' type='STRING' />
+		<field number='50022' name='dark-would-qty' type='STRING' />
+		<field number='50023' name='dark-would-price' type='STRING' />
+		<field number='50025' name='rules-disabled' type='STRING' />
+		<field number='50026' name='max-cross-qty' type='STRING' />
+		<field number='50027' name='max-sweep-qty' type='STRING' />
+		<field number='50028' name='sweep-enabled' type='STRING' />
+		<field number='50029' name='max-sweep-pct' type='STRING' />
+		<field number='50030' name='type50030' type='STRING' />
+		<field number='50032' name='dark-lit' type='STRING' />
+		<field number='50033' name='aggression-margin' type='STRING' />
+		<field number='50103' name='market-depth' type='STRING' />
+		<field number='50104' name='spread' type='STRING' />
+		<field number='50105' name='simultaneous-orders' type='STRING' />
+		<field number='50107' name='validate-is-in-the-money' type='STRING' />
+		<field number='50108' name='speed-up' type='STRING' />
+		<field number='50109' name='compensate-loss' type='STRING' />
+		<field number='50110' name='max-slice-qty' type='STRING' />
+		<field number='50111' name='active-orders' type='STRING' />
+		<field number='50112' name='factor' type='STRING' />
+		<field number='50114' name='hedge-pct' type='STRING' />
+		<field number='50115' name='hedge-ratio' type='STRING' />
+		<field number='50116' name='type50116' type='STRING' />
+		<field number='99925' name='target-participation' type='STRING' />
 	</fields>
 </fix>
