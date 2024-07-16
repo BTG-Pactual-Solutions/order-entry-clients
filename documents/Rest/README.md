@@ -80,7 +80,7 @@ Depending on the library or tool that you are using to request our API, it may b
  
  
 ### 3.2. Create Order (DMA/Limit)
- `POST` `/v1/order`
+ `POST` `/api/v1/order`
 
 #### Header
 | Key | Value |
@@ -115,7 +115,7 @@ Depending on the library or tool that you are using to request our API, it may b
 or [Cancel Order By Id](#61-cancel-order-by-id)
  
 ### 3.3. Create Order (DMA/MARKET)
-`POST` `/v1/order`
+`POST` `/api/v1/order`
 #### Header
 | Key | Value |
 | --- | --- |
@@ -147,7 +147,7 @@ or [Cancel Order By Id](#61-cancel-order-by-id)
 or [Cancel Order By Id](#61-cancel-order-by-id)
  
 ### 3.4. Create Order (DMA/StopLimit)
-`POST` `/v1/order`
+`POST` `/api/v1/order`
  
 #### Header
 | Key | Value |
@@ -202,7 +202,7 @@ or [Cancel Order By Id](#61-cancel-order-by-id)
 
  
 ### 4.2. Change Order (DMA/Limit)
-`PUT` `/v1/order`
+`PUT` `/api/v1/order`
 #### Header
 | Key | Value |
 | --- | --- |
@@ -229,7 +229,7 @@ or [Cancel Order By Id](#61-cancel-order-by-id)
 ```
  
 ### 4.3. Change Order (DMA/Market)
-`PUT` `/v1/order`
+`PUT` `/api/v1/order`
 #### Header
 | Key | Value |
 | --- | --- |
@@ -255,7 +255,7 @@ or [Cancel Order By Id](#61-cancel-order-by-id)
 ```
  
 ### 4.4. Change Order (DMA/StopLimit)
-`PUT` `/v1/order`
+`PUT` `/api/v1/order`
 #### Header
 | Key | Value |
 | --- | --- |
@@ -364,7 +364,7 @@ Not applicable.
 ```
 
 ### 5.3. Query Order by Parent
-#### `GET` `/v2/order?parent={boolValue}`
+#### `GET` `/api/v2/order?parent={boolValue}`
 `boolValue` pode assumir valores de `true` ou `false`
 
 #### Header
@@ -415,7 +415,7 @@ Not applicable.
 
 ### 5.4. Query Order by Memo
 
-#### `GET` `/v2/order?memo={memo}`
+#### `GET` `/api/v2/order?memo={memo}`
 `memo` pode assumir o valor de qualquer string.
 
 #### Header
@@ -465,7 +465,7 @@ Not applicable.
 ```
 
 ### 5.5. Query Order by Status
-#### `GET` `/v2/order?status={status}`
+#### `GET` `/api/v2/order?status={status}`
 `status` pode assumir os valores: ``New``, ``Partial``, ``Filled``, `Done for day`, `Canceled`, `Replaced`, `Pending Cancel`, `Rejected`, `Pending New`, `Expired` e `Pending Replace`.
 
 #### Header
@@ -515,7 +515,7 @@ Not applicable.
 ```
 
 ### 5.6. Query Order by Symbol
-#### `GET` `/v2/order?symbol={symbol}`
+#### `GET` `/api/v2/order?symbol={symbol}`
 `symbol` deve ser um ticker válido.
 
 #### Header
@@ -565,7 +565,7 @@ Not applicable.
 ```
 
 ### 5.7. Query Order by Complete
-#### `GET` `/v2/order?complete={boolValue}`
+#### `GET` `/api/v2/order?complete={boolValue}`
 `boolValue` pode assumir o valor `true` ou `false`.
 
 #### Header
@@ -615,7 +615,7 @@ Not applicable.
 ```
 
 ### 5.8. Query Order by Side
-#### `GET` `/v2/order?Side={side}`
+#### `GET` `/api/v2/order?Side={side}`
 `side` pode assumir valor de `Sell` ou `Buy`.
 
 #### Header
@@ -665,7 +665,7 @@ Not applicable.
 ```
  
 ### 5.9. Consult All Orders
-``GET`` ``/v1/order/``
+``GET`` ``/api/v2/order/``
 #### Header
 | Key | Value |
 | --- | --- |
@@ -748,7 +748,7 @@ Not applicable.
 ## 6. Cancel
 
 ### 6.1. Cancel Order By Id
-``DELETE`` ``/v1/order/{id}``
+``DELETE`` ``/api/v1/order/{id}``
 #### Header
 | Key | Value |
 | --- | --- |
@@ -765,7 +765,7 @@ Not applicable.
 ```
 
 ### 6.2. Cancel All User Order
-``DELETE`` ``/v1/order/myorders``
+``DELETE`` ``/api/v2/order/myorders``
 #### Header
 | Key | Value |
 | --- | --- |
