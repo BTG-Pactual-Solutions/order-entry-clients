@@ -12,7 +12,7 @@ Get your token and use it in the examples below.
 ```Python
 controller = OrderController(
     token="TOKEN",
-	order_api_host="URL",
+    order_api_host="URL",
     account="YOUR_ACCOUNT_NUMBER",
     execBroker="YOUR_EXEC_BROKER",
     entity="YOUR_ENTITY",
@@ -27,7 +27,7 @@ def order_update_callback(order):
 
 controller = OrderController(
     token=token,
-	order_api_host="URL",
+    order_api_host="URL",
     account="YOUR_ACCOUNT_NUMBER",
     execBroker="YOUR_EXEC_BROKER",
     entity="YOUR_ENTITY",
@@ -59,9 +59,9 @@ orderId = controller.create_order(
     price="20.41",
     timeInForce="Day",
     isDMA="true",
-	account="ACCOUNT", 
-	execBroker="NUMBER_OF_BROKER", 
-	entity="ENTITY"
+    account="ACCOUNT", 
+    execBroker="NUMBER_OF_BROKER", 
+    entity="ENTITY"
 )
 ```
 
@@ -107,7 +107,7 @@ controller.get_orders()
 
 ```Python
 controller.get_order(
-		id = "ORDER ID"
+    id = "ORDER ID"
 )
 ```
 
