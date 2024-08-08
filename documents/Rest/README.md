@@ -316,7 +316,7 @@ or [Cancel Order By Id](#61-cancel-order-by-id)
 ||service|String|Specifies the service used.|
  
 ### 5.2. Query Order By Id
-``GET`` ``/v2/order/id/{id}``
+``GET`` ``/api/v2/order/id/{id}``
 #### Header
 | Key | Value |
 | --- | --- |
