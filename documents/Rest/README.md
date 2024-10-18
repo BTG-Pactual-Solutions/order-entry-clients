@@ -15,7 +15,7 @@ Rest API documentation to integrate with Solutions Order Entry.
   - [4.2. Change Order (DMA/Limit)](#42-change-order-dmalimit)
   - [4.3. Change Order (DMA/Market)](#43-change-order-dmamarket)
   - [4.4. Change Order (DMA/StopLimit)](#44-change-order-dmastoplimit)
-- [5. Query and read](#5-query-and-read)
+- [5. Order query and read](#5-query-and-read)
   - [5.1. Parameters result](#51-parameters-result)
   - [5.2. Query Order By Id](#52-query-order-by-id)
   - [5.3. Query Order By Parent](#53-query-order-by-parent)
@@ -25,20 +25,23 @@ Rest API documentation to integrate with Solutions Order Entry.
   - [5.7. Query Order By Complete](#57-query-order-by-complete)
   - [5.8. Query Order By Side](#58-query-order-by-side)  
   - [5.9. Consult All Orders](#59-consult-all-orders)
-- [6. Cancel](#6-cancel)
-  - [6.1. Cancel Order By Id](#61-cancel-order-by-id)
-  - [6.2. Cancel All User Order](#62-cancel-all-user-order)
-- [7. Algos](#7-algos)
-  - [7.1. TWAP](#71-twap)
-  - [7.2. VWAP](#72-vwap)
-  - [7.3. POV](#73-pov)
-  - [7.4. PEGGED](#74-pegged)
-  - [7.5. SNIPER](#75-sniper)
-  - [7.6. PEGGED-SNIPER](#76-pegged-sniper)
-  - [7.7. ICEBERG](#77-iceberg)
-  - [7.8. TARGETCLOSE](#78-targetclose)
-- [8. Type Dictionary](#8-type-dictionary)
-- [9. Formats](#9-formats)
+- [6. Trade query and read](#6-trade-query-and-read)
+  - [6.1. Parameters result](#61-parameters-result)
+  - [6.2. Get Trades](#62-get-trades)
+- [7. Cancel](#6-cancel)
+  - [7.1. Cancel Order By Id](#61-cancel-order-by-id)
+  - [7.2. Cancel All User Order](#62-cancel-all-user-order)
+- [8. Algos](#7-algos)
+  - [8.1. TWAP](#71-twap)
+  - [8.2. VWAP](#72-vwap)
+  - [8.3. POV](#73-pov)
+  - [8.4. PEGGED](#74-pegged)
+  - [8.5. SNIPER](#75-sniper)
+  - [8.6. PEGGED-SNIPER](#76-pegged-sniper)
+  - [8.7. ICEBERG](#77-iceberg)
+  - [8.8. TARGETCLOSE](#78-targetclose)
+- [9. Type Dictionary](#8-type-dictionary)
+- [10. Formats](#9-formats)
  
 ## 1. Authentication
  
@@ -745,9 +748,98 @@ Not applicable.
  
 ```
  
-## 6. Cancel
+## 6. Trade Query and Read
 
-### 6.1. Cancel Order By Id
+### 6.1. Parameters result
+|Name|Type|Comment|
+|---|---|---|
+|clientId|String||
+|account|Integer|Specifies the account.|
+|execBroker|Integer|Specifies the broker code.|
+|side|String|Identifies the side of the order.|
+|qty|Decimal|Specifies the order quantity.|
+|symbol|String|Instrument identification.|
+|currency|String||
+|country|String||
+|clOrdId|String|Specifies the order identifier as assigned by the institution.|
+|origClOrdID|String|Specifies the order origin identifier as assigned by the institution.|
+|enteredByUser|String|Identifies the user.|
+|businessUnit|String||
+|tradeDate|Date|Specifies the trade creation date.|
+|transactTime|[DateTime](#datetime)|Specifies the execution time (UTC).|
+|orderId|String|Specifies the order identifier as assigned by sell-side.|
+|deskId|String||
+|crossId|String||
+|execId|String||
+|execRefId|String||
+|text|String|Custom field. Display rejection reason when [ExecType](#execType) is Rejected|
+|memo|String|Custom field. Returns the value sent on [Create Order](#3-create-order)|
+|price|Decimal|Order price|
+|uniqueTradeId|String|Exchange unique id for this trade|
+|lastCapacity|String||
+|lastLiquidityIndicator|Integer|Indicates if the trade has add (1) or removed (2) Liquidity|
+|lastMkt|String|Indicates the exchange of this trade|
+
+### 6.2. Get Trades
+``GET`` ``/api/v2/trade``
+#### Header
+| Key | Value |
+| --- | --- |
+| Authorization | Bearer {token} |
+#### Query Parameters
+| Parameter | Comment |
+| --- | --- |
+| symbol | --- |
+| id | --- |
+| side | --- |
+| memo | --- |
+
+#### Body
+Not applicable.
+
+#### Response - 202 Accepted
+``` JSON
+ [
+  {
+    "clientId": "CLIENT_UAT",
+    "account": "114",
+    "execBroker": "935",
+    "exchange": null,
+    "side": "Buy",
+    "qty": 1.0,
+    "symbol": "TF473",
+    "currency": "BRL",
+    "country": "BR",
+    "clOrdId": null,
+    "origClOrdId": null,
+    "enteredByUser": "user@teste.com",
+    "businessUnit": null,
+    "tradeDate": "2024-01-01T00:00:00",
+    "transactTime": "2024-01-01T01:01:01.01Z",
+    "orderId": "1234567890123",
+    "subaccount": null,
+    "deskId": null,
+    "crossId": null,
+    "execId": "123456789012345678",
+    "execRefId": null,
+    "text": null,
+    "memo": null,
+    "price": 5.0,
+    "uniqueTradeId": "12345",
+    "matchedQty": 0,
+    "isBustFill": false,
+    "tradeMatchId": null,
+    "lastCapacity": 1,
+    "lastLiquidityIndicator": 1,
+    "lastMkt": "BVMF"
+  }
+ ]
+```
+
+
+## 7. Cancel
+
+### 7.1. Cancel Order By Id
 ``DELETE`` ``/api/v1/order/{id}``
 #### Header
 | Key | Value |
@@ -764,7 +856,7 @@ Not applicable.
 }
 ```
 
-### 6.2. Cancel All User Order
+### 7.2. Cancel All User Order
 ``DELETE`` ``/api/v2/order/myorders``
 #### Header
 | Key | Value |
@@ -782,7 +874,7 @@ Not applicable.
 ```
 ---
  
-## 7. Algos
+## 8. Algos
 Below are the standard algos (for premium algos please consult Solutions team).
  
 #### Parameter default
@@ -829,7 +921,7 @@ For the `"strategyParameter"` check out the parameters respectively
  
 <!-- #### Strategy parameters -->
  
-### 7.1. TWAP
+### 8.1. TWAP
  
 |Tag|Key|Required|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
@@ -871,7 +963,7 @@ For the `"strategyParameter"` check out the parameters respectively
 }
  ```
 
-### 7.2. VWAP
+### 8.2. VWAP
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -915,7 +1007,7 @@ For the `"strategyParameter"` check out the parameters respectively
 }
 ```
 
-### 7.3. POV
+### 8.3. POV
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -960,7 +1052,7 @@ For the `"strategyParameter"` check out the parameters respectively
 ```
 
 
-### 7.4. PEGGED
+### 8.4. PEGGED
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -997,7 +1089,7 @@ For the `"strategyParameter"` check out the parameters respectively
 ```
 
  
-### 7.5. SNIPER
+### 8.5. SNIPER
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |110|min-qty|N|Long||Y|Minimum quantity of an order to be executed|
@@ -1033,7 +1125,7 @@ For the `"strategyParameter"` check out the parameters respectively
 
 
  
-### 7.6. PEGGED-SNIPER
+### 8.6. PEGGED-SNIPER
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -1071,7 +1163,7 @@ For the `"strategyParameter"` check out the parameters respectively
 }
 ```
  
-### 7.7. ICEBERG
+### 8.7. ICEBERG
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -1106,7 +1198,7 @@ For the `"strategyParameter"` check out the parameters respectively
 }
 ```
  
-### 7.8. TARGETCLOSE
+### 8.8. TARGETCLOSE
 |Tag|Key|Req|Type|Default|Amend|Comment|
 |---|---|---|---|---|---|---
 |111|max-floor|N|Long|Infinity|Y|Maximum displayed quantity|
@@ -1142,7 +1234,7 @@ For the `"strategyParameter"` check out the parameters respectively
 ```
  
  
-## 8. Type Dictionary
+## 9. Type Dictionary
  
 ### Side
 Identifies the side of the order.
@@ -1233,7 +1325,7 @@ Specifies the type of execution.
 | Requested | Requested |
  
  
-## 9. Formats
+## 10. Formats
 
 #### UTC
 ``yyyyMMdd-HH:mm:ss``
