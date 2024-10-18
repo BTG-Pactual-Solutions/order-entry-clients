@@ -797,7 +797,7 @@ Not applicable.
 #### Body
 Not applicable.
 
-#### Response - 202 Accepted
+#### Response - 200 Ok
 ``` JSON
  [
   {
